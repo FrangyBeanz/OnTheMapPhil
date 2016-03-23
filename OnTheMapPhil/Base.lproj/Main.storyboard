@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Wr3-A6-OFO">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -13,15 +13,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <connections>
+                        <segue destination="dFh-wP-hJI" kind="relationship" relationship="rootViewController" id="wcx-LR-VIJ"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cFJ-xz-dXw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1590" y="296"/>
         </scene>
-        <!--View Controller-->
+        <!--Login-->
         <scene sceneID="vk0-i6-3kt">
             <objects>
-                <viewController id="dFh-wP-hJI" sceneMemberID="viewController">
+                <viewController id="dFh-wP-hJI" customClass="LoginViewController" customModule="OnTheMapPhil" customModuleProvider="target" colorLabel="IBBuiltInLabel-Orange" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yEo-Fc-jY7"/>
                         <viewControllerLayoutGuide type="bottom" id="IqJ-Hq-Ykl"/>
@@ -52,13 +55,20 @@
                                     <rect key="frame" x="177" y="230" width="46" height="30"/>
                                 </variation>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="EoT-v9-21M">
+                                <rect key="frame" x="-10" y="-10" width="20" height="20"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="190" y="290" width="20" height="20"/>
+                                </variation>
+                            </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="JHy-Dg-gkL"/>
                                 <exclude reference="Mc9-lY-Jjd"/>
                                 <exclude reference="bzi-Nm-SyG"/>
+                                <exclude reference="EoT-v9-21M"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -66,13 +76,21 @@
                                 <include reference="JHy-Dg-gkL"/>
                                 <include reference="Mc9-lY-Jjd"/>
                                 <include reference="bzi-Nm-SyG"/>
+                                <include reference="EoT-v9-21M"/>
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" title="Login" id="CM1-7t-mZK"/>
+                    <connections>
+                        <outlet property="EmailEntry" destination="JHy-Dg-gkL" id="bQV-7r-6HT"/>
+                        <outlet property="LoginActivityIndicator" destination="EoT-v9-21M" id="HPm-hs-Sre"/>
+                        <outlet property="LoginButton" destination="bzi-Nm-SyG" id="kvG-xi-OjD"/>
+                        <outlet property="PasswordEntry" destination="Mc9-lY-Jjd" id="vIl-YB-GsW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ucC-0E-hia" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-937.5" y="296"/>
+            <point key="canvasLocation" x="-801" y="296"/>
         </scene>
     </scenes>
 </document>
