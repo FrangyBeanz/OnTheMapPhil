@@ -14,6 +14,11 @@
 		FA461A991CA302C900A9CC71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA461A971CA302C900A9CC71 /* LaunchScreen.storyboard */; };
 		FA461AA41CA302C900A9CC71 /* OnTheMapPhilTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA461AA31CA302C900A9CC71 /* OnTheMapPhilTests.swift */; };
 		FA461AAF1CA302CA00A9CC71 /* OnTheMapPhilUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA461AAE1CA302CA00A9CC71 /* OnTheMapPhilUITests.swift */; };
+		FA461ABE1CA325C600A9CC71 /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA461ABD1CA325C600A9CC71 /* UdacityClient.swift */; };
+		FA461AC01CA325DC00A9CC71 /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA461ABF1CA325DC00A9CC71 /* UdacityConstants.swift */; };
+		FA461AC21CA3260000A9CC71 /* UdacityConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA461AC11CA3260000A9CC71 /* UdacityConvenience.swift */; };
+		FA461AC61CA3285B00A9CC71 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FA461AC51CA3285B00A9CC71 /* Reachability.m */; };
+		FA461AC91CA340A200A9CC71 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA461AC81CA340A200A9CC71 /* Student.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +52,13 @@
 		FA461AAA1CA302C900A9CC71 /* OnTheMapPhilUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnTheMapPhilUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA461AAE1CA302CA00A9CC71 /* OnTheMapPhilUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapPhilUITests.swift; sourceTree = "<group>"; };
 		FA461AB01CA302CA00A9CC71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA461ABD1CA325C600A9CC71 /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
+		FA461ABF1CA325DC00A9CC71 /* UdacityConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConstants.swift; sourceTree = "<group>"; };
+		FA461AC11CA3260000A9CC71 /* UdacityConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConvenience.swift; sourceTree = "<group>"; };
+		FA461AC31CA3285A00A9CC71 /* OnTheMapPhil-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OnTheMapPhil-Bridging-Header.h"; sourceTree = "<group>"; };
+		FA461AC41CA3285B00A9CC71 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		FA461AC51CA3285B00A9CC71 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		FA461AC81CA340A200A9CC71 /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,12 +109,15 @@
 		FA461A8D1CA302C900A9CC71 /* OnTheMapPhil */ = {
 			isa = PBXGroup;
 			children = (
+				FA461AC71CA3288100A9CC71 /* Reachability */,
+				FA461ABC1CA3259C00A9CC71 /* Udacity Client */,
 				FA461A8E1CA302C900A9CC71 /* AppDelegate.swift */,
 				FA461A901CA302C900A9CC71 /* LoginViewController.swift */,
 				FA461A921CA302C900A9CC71 /* Main.storyboard */,
 				FA461A951CA302C900A9CC71 /* Assets.xcassets */,
 				FA461A971CA302C900A9CC71 /* LaunchScreen.storyboard */,
 				FA461A9A1CA302C900A9CC71 /* Info.plist */,
+				FA461AC81CA340A200A9CC71 /* Student.swift */,
 			);
 			path = OnTheMapPhil;
 			sourceTree = "<group>";
@@ -123,6 +138,26 @@
 				FA461AB01CA302CA00A9CC71 /* Info.plist */,
 			);
 			path = OnTheMapPhilUITests;
+			sourceTree = "<group>";
+		};
+		FA461ABC1CA3259C00A9CC71 /* Udacity Client */ = {
+			isa = PBXGroup;
+			children = (
+				FA461ABD1CA325C600A9CC71 /* UdacityClient.swift */,
+				FA461ABF1CA325DC00A9CC71 /* UdacityConstants.swift */,
+				FA461AC11CA3260000A9CC71 /* UdacityConvenience.swift */,
+			);
+			name = "Udacity Client";
+			sourceTree = "<group>";
+		};
+		FA461AC71CA3288100A9CC71 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				FA461AC31CA3285A00A9CC71 /* OnTheMapPhil-Bridging-Header.h */,
+				FA461AC41CA3285B00A9CC71 /* Reachability.h */,
+				FA461AC51CA3285B00A9CC71 /* Reachability.m */,
+			);
+			name = Reachability;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,7 +293,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA461A911CA302C900A9CC71 /* LoginViewController.swift in Sources */,
+				FA461AC01CA325DC00A9CC71 /* UdacityConstants.swift in Sources */,
 				FA461A8F1CA302C900A9CC71 /* AppDelegate.swift in Sources */,
+				FA461AC21CA3260000A9CC71 /* UdacityConvenience.swift in Sources */,
+				FA461AC61CA3285B00A9CC71 /* Reachability.m in Sources */,
+				FA461AC91CA340A200A9CC71 /* Student.swift in Sources */,
+				FA461ABE1CA325C600A9CC71 /* UdacityClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +438,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = OnTheMapPhil/Info.plist;
@@ -405,6 +446,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ge.OnTheMapPhil;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "OnTheMapPhil/OnTheMapPhil-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -412,6 +455,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = OnTheMapPhil/Info.plist;
@@ -419,6 +463,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ge.OnTheMapPhil;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "OnTheMapPhil/OnTheMapPhil-Bridging-Header.h";
 			};
 			name = Release;
 		};

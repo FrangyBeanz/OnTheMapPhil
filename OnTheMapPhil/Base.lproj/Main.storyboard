@@ -54,6 +54,9 @@
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="177" y="230" width="46" height="30"/>
                                 </variation>
+                                <connections>
+                                    <action selector="LoginButton:" destination="dFh-wP-hJI" eventType="touchUpInside" id="J65-6f-WTf"/>
+                                </connections>
                             </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="EoT-v9-21M">
                                 <rect key="frame" x="-10" y="-10" width="20" height="20"/>
@@ -61,6 +64,19 @@
                                     <rect key="frame" x="190" y="290" width="20" height="20"/>
                                 </variation>
                             </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YCT-H2-BQS">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <string key="text">No Internet Connection.
+Please ensure you are connected and try again. </string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <size key="shadowOffset" width="1" height="0.0"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="70" y="290" width="261" height="155"/>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <variation key="default">
@@ -69,6 +85,7 @@
                                 <exclude reference="Mc9-lY-Jjd"/>
                                 <exclude reference="bzi-Nm-SyG"/>
                                 <exclude reference="EoT-v9-21M"/>
+                                <exclude reference="YCT-H2-BQS"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -77,11 +94,13 @@
                                 <include reference="Mc9-lY-Jjd"/>
                                 <include reference="bzi-Nm-SyG"/>
                                 <include reference="EoT-v9-21M"/>
+                                <include reference="YCT-H2-BQS"/>
                             </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Login" id="CM1-7t-mZK"/>
                     <connections>
+                        <outlet property="ConnectionErrorMessage" destination="YCT-H2-BQS" id="s6n-io-PTL"/>
                         <outlet property="EmailEntry" destination="JHy-Dg-gkL" id="bQV-7r-6HT"/>
                         <outlet property="LoginActivityIndicator" destination="EoT-v9-21M" id="HPm-hs-Sre"/>
                         <outlet property="LoginButton" destination="bzi-Nm-SyG" id="kvG-xi-OjD"/>

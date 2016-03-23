@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OnTheMapPhil/UdacityClient.swift"
+            timestampString = "480454236.484744"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "UdacityClient"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OnTheMapPhil.UdacityClient.init (OnTheMapPhil.UdacityClient.Type)() -&gt; OnTheMapPhil.UdacityClient"
+                  moduleName = "OnTheMapPhil"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/philliphughes/Documents/iOS%20Development/On%20the%20Map%20Phil!%202016/OnTheMapPhil/OnTheMapPhil/UdacityClient.swift"
+                  timestampString = "480462359.979299"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "702">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OnTheMapPhil.UdacityClient.account.setter : Swift.Optional&lt;OnTheMapPhil.Student&gt;"
+                  moduleName = "OnTheMapPhil"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/philliphughes/Documents/iOS%20Development/On%20the%20Map%20Phil!%202016/OnTheMapPhil/OnTheMapPhil/UdacityClient.swift"
+                  timestampString = "480462359.979719"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "502">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OnTheMapPhil.UdacityClient.account.materializeForSet : Swift.Optional&lt;OnTheMapPhil.Student&gt;"
+                  moduleName = "OnTheMapPhil"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/philliphughes/Documents/iOS%20Development/On%20the%20Map%20Phil!%202016/OnTheMapPhil/OnTheMapPhil/UdacityClient.swift"
+                  timestampString = "480462359.979871"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OnTheMapPhil/UdacityConvenience.swift"
+            timestampString = "480460823.781758"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "authenticateBasicLoginWithViewController(_:completionHandler:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
