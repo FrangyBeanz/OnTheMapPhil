@@ -19,6 +19,7 @@
 		FA461AC21CA3260000A9CC71 /* UdacityConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA461AC11CA3260000A9CC71 /* UdacityConvenience.swift */; };
 		FA461AC61CA3285B00A9CC71 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FA461AC51CA3285B00A9CC71 /* Reachability.m */; };
 		FA461AC91CA340A200A9CC71 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA461AC81CA340A200A9CC71 /* Student.swift */; };
+		FA461ACC1CAB180500A9CC71 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA461ACB1CAB180500A9CC71 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		FA461AC41CA3285B00A9CC71 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		FA461AC51CA3285B00A9CC71 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		FA461AC81CA340A200A9CC71 /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
+		FA461ACB1CAB180500A9CC71 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,10 +111,10 @@
 		FA461A8D1CA302C900A9CC71 /* OnTheMapPhil */ = {
 			isa = PBXGroup;
 			children = (
+				FA461ACA1CAB17EC00A9CC71 /* View Controllers */,
 				FA461AC71CA3288100A9CC71 /* Reachability */,
 				FA461ABC1CA3259C00A9CC71 /* Udacity Client */,
 				FA461A8E1CA302C900A9CC71 /* AppDelegate.swift */,
-				FA461A901CA302C900A9CC71 /* LoginViewController.swift */,
 				FA461A921CA302C900A9CC71 /* Main.storyboard */,
 				FA461A951CA302C900A9CC71 /* Assets.xcassets */,
 				FA461A971CA302C900A9CC71 /* LaunchScreen.storyboard */,
@@ -158,6 +160,15 @@
 				FA461AC51CA3285B00A9CC71 /* Reachability.m */,
 			);
 			name = Reachability;
+			sourceTree = "<group>";
+		};
+		FA461ACA1CAB17EC00A9CC71 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FA461A901CA302C900A9CC71 /* LoginViewController.swift */,
+				FA461ACB1CAB180500A9CC71 /* MapViewController.swift */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -299,6 +310,7 @@
 				FA461AC61CA3285B00A9CC71 /* Reachability.m in Sources */,
 				FA461AC91CA340A200A9CC71 /* Student.swift in Sources */,
 				FA461ABE1CA325C600A9CC71 /* UdacityClient.swift in Sources */,
+				FA461ACC1CAB180500A9CC71 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
