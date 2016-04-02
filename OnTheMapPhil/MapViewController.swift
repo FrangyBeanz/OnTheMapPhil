@@ -13,10 +13,26 @@ import MapKit
 
 class MapViewController: UIViewController,MKMapViewDelegate {
     
-    @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var PinButton: UIBarButtonItem!
+    var location: CLLocation!
+    var DefaultLat = 51.9080387
+    var DefaultLong = -2.0772528
+    
+    //Refresh button to reset the view to the default and refresh the pins
+    @IBAction func RefreshButton(sender: AnyObject) {
+        let location = CLLocationCoordinate2D(
+            latitude: DefaultLat,
+            longitude: DefaultLong
+            )
+        let span = MKCoordinateSpanMake(80, 80)
+        let region = MKCoordinateRegion(center: location, span: span)
+        self.mapView.setRegion(region, animated: true)
+        self.reload()
+    }
+    
+    @IBAction func PinButton(sender: AnyObject) {
+    }
+    @IBOutlet var mapView: MKMapView!
     @IBOutlet weak var LogoutButton: UIBarButtonItem!
-    var RefreshButton = UIBarButtonItem()
     var annotations = [MKPointAnnotation]()
     var count = 0
     
@@ -80,14 +96,11 @@ class MapViewController: UIViewController,MKMapViewDelegate {
             getNextResults()
         }
     }
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Refresh
-        RefreshButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "reload")
-        PinButton = UIBarButtonItem(image: UIImage(named: "mappin_30x30"), landscapeImagePhone:UIImage(named: "mappin_30x30"), style: .Plain, target: self, action: "newLocation")
         LogoutButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: "logout")
         
         // The "locations" array is an array of dictionary objects that are similar to the JSON

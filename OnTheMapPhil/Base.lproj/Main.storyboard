@@ -221,11 +221,14 @@ Please ensure you are connected and try again. </string>
                                             <barButtonItem image="refresh_filled-32" id="4pA-DY-NY8">
                                                 <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <connections>
-                                                    <action selector="RefreshButton:" destination="vBp-Eg-Hs6" id="fc5-mP-OBk"/>
+                                                    <action selector="RefreshButton:" destination="vBp-Eg-Hs6" id="RhZ-WU-lwA"/>
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem image="location-32" id="ZTX-xY-KJG">
                                                 <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <action selector="PinButton:" destination="vBp-Eg-Hs6" id="MS8-2c-eYj"/>
+                                                </connections>
                                             </barButtonItem>
                                         </rightBarButtonItems>
                                     </navigationItem>
@@ -291,8 +294,6 @@ Please ensure you are connected and try again. </string>
                     <tabBarItem key="tabBarItem" title="Map" image="map_marker_filled-32" selectedImage="map_marker_filled-30 copy" id="m4t-tX-acM"/>
                     <connections>
                         <outlet property="LogoutButton" destination="BPs-s9-Lk9" id="Ghg-IP-WN3"/>
-                        <outlet property="PinButton" destination="ZTX-xY-KJG" id="tTt-fZ-lZJ"/>
-                        <outlet property="RefreshButton" destination="4pA-DY-NY8" id="7JJ-wo-FaI"/>
                         <outlet property="mapView" destination="Cx2-4n-A9v" id="SUZ-uv-8AE"/>
                     </connections>
                 </viewController>
