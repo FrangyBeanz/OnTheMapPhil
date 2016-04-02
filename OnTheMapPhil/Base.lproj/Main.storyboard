@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
@@ -32,6 +33,7 @@
                         <viewControllerLayoutGuide type="bottom" id="IqJ-Hq-Ykl"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bPb-bE-UIY">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JHy-Dg-gkL">
@@ -92,6 +94,9 @@ Please ensure you are connected and try again. </string>
                                 <exclude reference="YCT-H2-BQS"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="7sm-x9-dpi"/>
+                                <exclude reference="H94-kK-AvF"/>
+                                <exclude reference="ejn-0s-x7a"/>
                                 <exclude reference="gBL-FN-iim"/>
                                 <exclude reference="pAW-Hp-ulf"/>
                                 <exclude reference="re7-dg-mhq"/>
@@ -101,9 +106,6 @@ Please ensure you are connected and try again. </string>
                                 <exclude reference="PDJ-9D-qh2"/>
                                 <exclude reference="imD-Gj-lsf"/>
                                 <exclude reference="pYm-b2-5Ti"/>
-                                <exclude reference="7sm-x9-dpi"/>
-                                <exclude reference="H94-kK-AvF"/>
-                                <exclude reference="ejn-0s-x7a"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -115,6 +117,9 @@ Please ensure you are connected and try again. </string>
                                 <include reference="YCT-H2-BQS"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="7sm-x9-dpi"/>
+                                <include reference="H94-kK-AvF"/>
+                                <include reference="ejn-0s-x7a"/>
                                 <include reference="gBL-FN-iim"/>
                                 <include reference="pAW-Hp-ulf"/>
                                 <include reference="re7-dg-mhq"/>
@@ -124,9 +129,6 @@ Please ensure you are connected and try again. </string>
                                 <include reference="PDJ-9D-qh2"/>
                                 <include reference="imD-Gj-lsf"/>
                                 <include reference="pYm-b2-5Ti"/>
-                                <include reference="7sm-x9-dpi"/>
-                                <include reference="H94-kK-AvF"/>
-                                <include reference="ejn-0s-x7a"/>
                             </mask>
                         </variation>
                     </view>
@@ -152,6 +154,7 @@ Please ensure you are connected and try again. </string>
                         <viewControllerLayoutGuide type="bottom" id="fju-Yv-o5f"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xN9-Gf-UoQ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="igE-7p-x9r">
@@ -171,10 +174,10 @@ Please ensure you are connected and try again. </string>
                                 <exclude reference="igE-7p-x9r"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="UMQ-ed-yc5"/>
                                 <exclude reference="403-rC-jju"/>
                                 <exclude reference="LFa-k6-PtB"/>
                                 <exclude reference="pu9-AU-wNH"/>
-                                <exclude reference="UMQ-ed-yc5"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -182,10 +185,10 @@ Please ensure you are connected and try again. </string>
                                 <include reference="igE-7p-x9r"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="UMQ-ed-yc5"/>
                                 <include reference="403-rC-jju"/>
                                 <include reference="LFa-k6-PtB"/>
                                 <include reference="pu9-AU-wNH"/>
-                                <include reference="UMQ-ed-yc5"/>
                             </mask>
                         </variation>
                     </view>
@@ -204,6 +207,7 @@ Please ensure you are connected and try again. </string>
                         <viewControllerLayoutGuide type="bottom" id="fll-lU-wJ0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="l7M-ZU-Q1a">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HE6-I3-sxE">
@@ -216,6 +220,9 @@ Please ensure you are connected and try again. </string>
                                         <rightBarButtonItems>
                                             <barButtonItem image="refresh_filled-32" id="4pA-DY-NY8">
                                                 <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <action selector="RefreshButton:" destination="vBp-Eg-Hs6" id="fc5-mP-OBk"/>
+                                                </connections>
                                             </barButtonItem>
                                             <barButtonItem image="location-32" id="ZTX-xY-KJG">
                                                 <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -248,6 +255,7 @@ Please ensure you are connected and try again. </string>
                                 <exclude reference="Cx2-4n-A9v"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="eG5-bR-f0p"/>
                                 <exclude reference="0JQ-bz-HCe"/>
                                 <exclude reference="R5o-gR-OZh"/>
                                 <exclude reference="nHM-2x-REH"/>
@@ -258,7 +266,6 @@ Please ensure you are connected and try again. </string>
                                 <exclude reference="eKx-1w-MOg"/>
                                 <exclude reference="mHf-hy-f7m"/>
                                 <exclude reference="pUJ-Rb-nGB"/>
-                                <exclude reference="eG5-bR-f0p"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -267,6 +274,7 @@ Please ensure you are connected and try again. </string>
                                 <include reference="Cx2-4n-A9v"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="eG5-bR-f0p"/>
                                 <include reference="0JQ-bz-HCe"/>
                                 <include reference="R5o-gR-OZh"/>
                                 <include reference="nHM-2x-REH"/>
@@ -277,12 +285,14 @@ Please ensure you are connected and try again. </string>
                                 <include reference="eKx-1w-MOg"/>
                                 <include reference="mHf-hy-f7m"/>
                                 <include reference="pUJ-Rb-nGB"/>
-                                <include reference="eG5-bR-f0p"/>
                             </mask>
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="map_marker_filled-32" selectedImage="map_marker_filled-30 copy" id="m4t-tX-acM"/>
                     <connections>
+                        <outlet property="LogoutButton" destination="BPs-s9-Lk9" id="Ghg-IP-WN3"/>
+                        <outlet property="PinButton" destination="ZTX-xY-KJG" id="tTt-fZ-lZJ"/>
+                        <outlet property="RefreshButton" destination="4pA-DY-NY8" id="7JJ-wo-FaI"/>
                         <outlet property="mapView" destination="Cx2-4n-A9v" id="SUZ-uv-8AE"/>
                     </connections>
                 </viewController>
