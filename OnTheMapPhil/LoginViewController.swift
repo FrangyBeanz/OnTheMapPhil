@@ -17,8 +17,9 @@ class LoginViewController: UIViewController,UINavigationControllerDelegate {
     @IBOutlet weak var LoginActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var ConnectionErrorMessage: UILabel!
     var tapOutsideTextbox: UITapGestureRecognizer? = nil
+
     
-   
+    
         override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -84,9 +85,10 @@ class LoginViewController: UIViewController,UINavigationControllerDelegate {
     
     
     func completeLogin(){ // prepares the display of the next view
+        
         dispatch_async(dispatch_get_main_queue(), {
-            
-            let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("AppTabBarController") as! UITabBarController
+           let detailController =
+               self.storyboard!.instantiateViewControllerWithIdentifier("AppTabBarController") as! UITabBarController
             self.navigationController!.presentViewController(detailController, animated: true) {
                 self.navigationController?.popViewControllerAnimated(true)
                 return ()

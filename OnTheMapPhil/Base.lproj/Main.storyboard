@@ -12,6 +12,7 @@
         <scene sceneID="1gP-f3-Tka">
             <objects>
                 <navigationController id="Wr3-A6-OFO" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="EhV-bt-w8Q"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="IuX-xb-kbb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -216,6 +217,9 @@ Please ensure you are connected and try again. </string>
                                     <navigationItem title="Title" id="Lxs-et-1k7">
                                         <barButtonItem key="leftBarButtonItem" title="Logout" id="BPs-s9-Lk9">
                                             <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="LogoutButton:" destination="vBp-Eg-Hs6" id="mBl-bA-dJm"/>
+                                            </connections>
                                         </barButtonItem>
                                         <rightBarButtonItems>
                                             <barButtonItem image="refresh_filled-32" id="4pA-DY-NY8">
@@ -293,13 +297,95 @@ Please ensure you are connected and try again. </string>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="map_marker_filled-32" selectedImage="map_marker_filled-30 copy" id="m4t-tX-acM"/>
                     <connections>
-                        <outlet property="LogoutButton" destination="BPs-s9-Lk9" id="Ghg-IP-WN3"/>
                         <outlet property="mapView" destination="Cx2-4n-A9v" id="SUZ-uv-8AE"/>
+                        <segue destination="Kh7-S5-cF5" kind="presentation" identifier="InputPinController" id="GB4-dT-loH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uoE-dt-I2B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="852" y="-34"/>
+        </scene>
+        <!--InputPinController-->
+        <scene sceneID="RJK-Ir-yDn">
+            <objects>
+                <viewController storyboardIdentifier="InputPinController" title="InputPinController" id="Kh7-S5-cF5" customClass="InputPinController" customModule="OnTheMapPhil" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dzb-ZF-8dQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="xif-YO-5uH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="O5L-7m-8vq">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8tP-Xi-PfE">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <string key="text">Where are you
+studying
+today? 
+S
+</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="98" y="68" width="204" height="121"/>
+                                </variation>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kgr-Pg-QYf">
+                                <rect key="frame" x="-25" y="-30" width="97" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="20" y="204" width="360" height="191"/>
+                                </variation>
+                            </textField>
+                            <button autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bkX-Es-nLU">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
+                                <state key="normal" title="Find on the Map!">
+                                    <color key="titleColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="20" y="504" width="360" height="76"/>
+                                </variation>
+                            </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="uHi-Rz-Q5U">
+                                <rect key="frame" x="-10" y="-10" width="20" height="20"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="190" y="445" width="20" height="20"/>
+                                </variation>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="8tP-Xi-PfE"/>
+                                <exclude reference="Kgr-Pg-QYf"/>
+                                <exclude reference="bkX-Es-nLU"/>
+                                <exclude reference="uHi-Rz-Q5U"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="8tP-Xi-PfE"/>
+                                <include reference="Kgr-Pg-QYf"/>
+                                <include reference="bkX-Es-nLU"/>
+                                <include reference="uHi-Rz-Q5U"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="findButton" destination="bkX-Es-nLU" id="fA6-FX-23v"/>
+                        <outlet property="indicator" destination="uHi-Rz-Q5U" id="w51-5x-z2P"/>
+                        <outlet property="locationString" destination="Kgr-Pg-QYf" id="qpj-nO-TbT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qRE-bc-H1x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1635" y="-34"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="mdh-cd-Cek">

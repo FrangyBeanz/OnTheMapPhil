@@ -5,6 +5,7 @@
 //  Created by Phillip Hughes on 29/03/2016.
 //  Copyright © 2016 Phillip Hughes. All rights reserved.
 //  Some code from this swift class has been leveraged from Udacity's "Pin Sample" App
+//  Refresh button assistance from this thread on Stack Overflow: http://stackoverflow.com/questions/33187177/map-button-refresh-location
 //
 
 import Foundation
@@ -16,6 +17,7 @@ class MapViewController: UIViewController,MKMapViewDelegate {
     var location: CLLocation!
     var DefaultLat = 51.9080387
     var DefaultLong = -2.0772528
+    var update = false
     
     //Refresh button to reset the view to the default and refresh the pins
     @IBAction func RefreshButton(sender: AnyObject) {
@@ -29,10 +31,22 @@ class MapViewController: UIViewController,MKMapViewDelegate {
         self.reload()
     }
     
+    //when we click the logout buttin, invalidate the sessions and return to the login screen
+    @IBAction func LogoutButton(sender: UIBarButtonItem) {
+        let udacitySession = UdacityClient()
+        udacitySession.sessionID = "nil"
+        UdacityClient.sharedInstance().account = nil
+        UdacityClient.sharedInstance().students = nil;
+        self.dismissViewControllerAnimated(true, completion: {});}
+    
     @IBAction func PinButton(sender: AnyObject) {
+        self.newLocation()
     }
+    
+    //@IBAction func logoutButton(segue: UIStoryboardSegue) {
+    //}
+    
     @IBOutlet var mapView: MKMapView!
-    @IBOutlet weak var LogoutButton: UIBarButtonItem!
     var annotations = [MKPointAnnotation]()
     var count = 0
     
@@ -96,13 +110,47 @@ class MapViewController: UIViewController,MKMapViewDelegate {
             getNextResults()
         }
     }
+    
 
+    //Function to Enter the current location
+    func presentInputPinController(){
+        let inputController = self.storyboard!.instantiateViewControllerWithIdentifier("InputPinController")
+            as! InputPinController
+       
+        inputController.update = self.update // Mark if it is for update or not
+        let navController = UINavigationController(rootViewController: inputController) // Creating a navigation controller with detailController at the root of the navigation stack.
+        self.navigationController!.presentViewController(navController, animated: true) {
+            self.navigationController?.popViewControllerAnimated(true)
+            return ()
+        }
+
+    }
+    
+    //Function for adding a new location to the map
+    func newLocation(){
+        let networkReachability = Reachability.reachabilityForInternetConnection()
+        let networkStatus = networkReachability.currentReachabilityStatus()
+        if (networkStatus.rawValue == NotReachable.rawValue) {// Before quering for an existing location check if there is an available internet connection
+            displayMessageBox("No Network Connection")
+        }else{
+            UdacityClient.sharedInstance().authenticateStudentLocationsWithViewController(self){ success,errorString in
+                if let _ = errorString{
+                    self.displayMessageBox(errorString!)
+                }else{
+                    
+                        dispatch_async(dispatch_get_main_queue()){
+                            self.presentInputPinController()
+                    }
+                }
+            }
+            
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        LogoutButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: "logout")
-        
+      
         // The "locations" array is an array of dictionary objects that are similar to the JSON
         // data that you can download from parse.
         
