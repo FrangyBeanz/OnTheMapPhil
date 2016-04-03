@@ -231,7 +231,8 @@ Please ensure you are connected and try again. </string>
                                             <barButtonItem image="location-32" id="ZTX-xY-KJG">
                                                 <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <connections>
-                                                    <action selector="PinButton:" destination="vBp-Eg-Hs6" id="MS8-2c-eYj"/>
+                                                    <action selector="PinButton:" destination="vBp-Eg-Hs6" id="mGb-b9-RKf"/>
+                                                    <segue destination="Kh7-S5-cF5" kind="presentation" id="sym-00-aua"/>
                                                 </connections>
                                             </barButtonItem>
                                         </rightBarButtonItems>
@@ -298,7 +299,6 @@ Please ensure you are connected and try again. </string>
                     <tabBarItem key="tabBarItem" title="Map" image="map_marker_filled-32" selectedImage="map_marker_filled-30 copy" id="m4t-tX-acM"/>
                     <connections>
                         <outlet property="mapView" destination="Cx2-4n-A9v" id="SUZ-uv-8AE"/>
-                        <segue destination="Kh7-S5-cF5" kind="presentation" identifier="InputPinController" id="GB4-dT-loH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uoE-dt-I2B" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -327,14 +327,14 @@ S
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="98" y="68" width="204" height="121"/>
+                                    <rect key="frame" x="98" y="68" width="204" height="83"/>
                                 </variation>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kgr-Pg-QYf">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Enter your location here!" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kgr-Pg-QYf">
                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="20" y="204" width="360" height="191"/>
@@ -349,23 +349,54 @@ S
                                     <color key="titleShadowColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="504" width="360" height="76"/>
+                                    <rect key="frame" x="20" y="546" width="360" height="34"/>
                                 </variation>
+                                <connections>
+                                    <segue destination="XgJ-c0-LnA" kind="show" identifier="ShareLinkWithPinController" id="IOe-kF-FqG"/>
+                                </connections>
                             </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="uHi-Rz-Q5U">
                                 <rect key="frame" x="-10" y="-10" width="20" height="20"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="190" y="445" width="20" height="20"/>
+                                    <rect key="frame" x="190" y="446" width="20" height="20"/>
                                 </variation>
                             </activityIndicatorView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ijm-uZ-yVj">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="m62-C1-Kja">
+                                        <barButtonItem key="rightBarButtonItem" style="plain" id="90m-3P-ioG">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="91D-TY-OqT">
+                                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Cancel"/>
+                                                <connections>
+                                                    <action selector="CancelButton:" destination="Kh7-S5-cF5" eventType="touchUpInside" id="jTA-gJ-8LB"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="ijm-uZ-yVj" firstAttribute="top" secondItem="dzb-ZF-8dQ" secondAttribute="bottom" id="aQ0-dd-NX8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ijm-uZ-yVj" secondAttribute="trailing" constant="-20" id="hFk-Sc-95I"/>
+                            <constraint firstItem="ijm-uZ-yVj" firstAttribute="leading" secondItem="O5L-7m-8vq" secondAttribute="leadingMargin" constant="-20" id="ptw-yl-uW2"/>
+                        </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="8tP-Xi-PfE"/>
                                 <exclude reference="Kgr-Pg-QYf"/>
                                 <exclude reference="bkX-Es-nLU"/>
                                 <exclude reference="uHi-Rz-Q5U"/>
+                                <exclude reference="ijm-uZ-yVj"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="aQ0-dd-NX8"/>
+                                <exclude reference="hFk-Sc-95I"/>
+                                <exclude reference="ptw-yl-uW2"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -374,6 +405,12 @@ S
                                 <include reference="Kgr-Pg-QYf"/>
                                 <include reference="bkX-Es-nLU"/>
                                 <include reference="uHi-Rz-Q5U"/>
+                                <include reference="ijm-uZ-yVj"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="aQ0-dd-NX8"/>
+                                <include reference="hFk-Sc-95I"/>
+                                <include reference="ptw-yl-uW2"/>
                             </mask>
                         </variation>
                     </view>
@@ -386,6 +423,116 @@ S
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qRE-bc-H1x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1635" y="-34"/>
+        </scene>
+        <!--Share Link With Pin Controller-->
+        <scene sceneID="Utz-DD-gRE">
+            <objects>
+                <viewController id="XgJ-c0-LnA" customClass="ShareLinkWithPinController" customModule="OnTheMapPhil" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vhP-rz-4px"/>
+                        <viewControllerLayoutGuide type="bottom" id="zg3-Sz-riQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Tql-87-oYF">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sor-1p-KeP">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="hrd-Vo-xWW">
+                                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="5d0-Jx-Srs">
+                                            <connections>
+                                                <action selector="CancelButton:" destination="XgJ-c0-LnA" id="IwM-Lq-VEA"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="20" width="400" height="44"/>
+                                </variation>
+                            </navigationBar>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="aij-w6-cXB">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="152" width="400" height="448"/>
+                                </variation>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kZC-2s-MqO">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="20" y="547" width="360" height="33"/>
+                                </variation>
+                                <connections>
+                                    <action selector="submitAction:" destination="XgJ-c0-LnA" eventType="touchUpInside" id="ItP-sV-wDX"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="NJ4-MS-SHw">
+                                <rect key="frame" x="-10" y="-10" width="20" height="20"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="190" y="413" width="20" height="20"/>
+                                </variation>
+                            </activityIndicatorView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Enter your link here!" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mGx-Rl-Uh9">
+                                <rect key="frame" x="-25" y="-30" width="97" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="64" width="400" height="90"/>
+                                </variation>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="sor-1p-KeP" firstAttribute="trailing" secondItem="Tql-87-oYF" secondAttribute="trailingMargin" constant="-20" id="TTJ-P7-uQE"/>
+                            <constraint firstItem="sor-1p-KeP" firstAttribute="leading" secondItem="Tql-87-oYF" secondAttribute="leadingMargin" constant="-20" id="fjW-93-VeK"/>
+                            <constraint firstItem="sor-1p-KeP" firstAttribute="top" secondItem="vhP-rz-4px" secondAttribute="bottom" id="kP8-a6-J2C"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="sor-1p-KeP"/>
+                                <exclude reference="aij-w6-cXB"/>
+                                <exclude reference="kZC-2s-MqO"/>
+                                <exclude reference="NJ4-MS-SHw"/>
+                                <exclude reference="mGx-Rl-Uh9"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="TTJ-P7-uQE"/>
+                                <exclude reference="fjW-93-VeK"/>
+                                <exclude reference="kP8-a6-J2C"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="sor-1p-KeP"/>
+                                <include reference="aij-w6-cXB"/>
+                                <include reference="kZC-2s-MqO"/>
+                                <include reference="NJ4-MS-SHw"/>
+                                <include reference="mGx-Rl-Uh9"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="TTJ-P7-uQE"/>
+                                <include reference="fjW-93-VeK"/>
+                                <include reference="kP8-a6-J2C"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="indicator" destination="NJ4-MS-SHw" id="Dq1-Hi-vpx"/>
+                        <outlet property="mapView" destination="aij-w6-cXB" id="kAE-Mx-BKK"/>
+                        <outlet property="shareLink" destination="mGx-Rl-Uh9" id="eoJ-0g-vj4"/>
+                        <outlet property="submitButton" destination="kZC-2s-MqO" id="yfx-FV-oF5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9yj-mT-XRP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2412" y="-34"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="mdh-cd-Cek">

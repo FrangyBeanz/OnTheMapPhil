@@ -10,28 +10,19 @@ import Foundation
 import UIKit
 import MapKit
 class InputPinController: UIViewController {
+    
     var tapRecognizer: UITapGestureRecognizer? = nil
-    
-    
-    @IBOutlet weak var locationString: UITextField! // The String location for geocoding
+    @IBOutlet weak var locationString: UITextField?          // The String location for geocoding
     @IBOutlet weak var indicator: UIActivityIndicatorView!
+    @IBAction func CancelButton(sender: UIBarButtonItem) {
+        cancel()
+    }
     @IBOutlet var findButton: UIButton!
-    var update = false // Indicates whether the update/save location button will update or create a new entry to in the student's API
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        findButton.layer.cornerRadius = 10
-        findButton.clipsToBounds = true
-        findButton.backgroundColor = UIColor.whiteColor()
-        findButton.alpha = 0.8
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.translucent = true
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: "cancel")
-        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.darkGrayColor()
-        self.navigationItem.hidesBackButton = true
-        self.navigationController?.toolbar.hidden = true
-        
+   
+        indicator.hidden = true
         tapRecognizer = UITapGestureRecognizer(target: self, action: "handleSingleTap:")
         tapRecognizer?.numberOfTapsRequired = 1
         
@@ -52,6 +43,7 @@ class InputPinController: UIViewController {
     
     // MARK: - Keyboard Fixes
     
+        
     func addKeyboardDismissRecognizer() {
         self.view.addGestureRecognizer(tapRecognizer!)
     }
@@ -65,15 +57,16 @@ class InputPinController: UIViewController {
         self.view.endEditing(true)
     }
     //MARK: -
-    //override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-  //      if let _ = segue.identifier {
-  //          let detailController = segue.destinationViewController as! ShareLinkViewController
-  //          detailController.locationString = locationString.text
-   //     }
-//    }
-    //MARK: - Button Action
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let _ = segue.identifier {
+           let detailController = segue.destinationViewController as! ShareLinkWithPinController
+           detailController.locationString = locationString!.text
+       }
+    }
+    
+    //Cancel button function to return to previous screen
     func cancel(){
-        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
 

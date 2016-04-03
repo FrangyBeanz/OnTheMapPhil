@@ -39,8 +39,8 @@ class MapViewController: UIViewController,MKMapViewDelegate {
         UdacityClient.sharedInstance().students = nil;
         self.dismissViewControllerAnimated(true, completion: {});}
     
-    @IBAction func PinButton(sender: AnyObject) {
-        self.newLocation()
+    @IBAction func PinButton(sender: UIBarButtonItem) {
+        
     }
     
     //@IBAction func logoutButton(segue: UIStoryboardSegue) {
@@ -112,40 +112,7 @@ class MapViewController: UIViewController,MKMapViewDelegate {
     }
     
 
-    //Function to Enter the current location
-    func presentInputPinController(){
-        let inputController = self.storyboard!.instantiateViewControllerWithIdentifier("InputPinController")
-            as! InputPinController
-       
-        inputController.update = self.update // Mark if it is for update or not
-        let navController = UINavigationController(rootViewController: inputController) // Creating a navigation controller with detailController at the root of the navigation stack.
-        self.navigationController!.presentViewController(navController, animated: true) {
-            self.navigationController?.popViewControllerAnimated(true)
-            return ()
-        }
-
-    }
     
-    //Function for adding a new location to the map
-    func newLocation(){
-        let networkReachability = Reachability.reachabilityForInternetConnection()
-        let networkStatus = networkReachability.currentReachabilityStatus()
-        if (networkStatus.rawValue == NotReachable.rawValue) {// Before quering for an existing location check if there is an available internet connection
-            displayMessageBox("No Network Connection")
-        }else{
-            UdacityClient.sharedInstance().authenticateStudentLocationsWithViewController(self){ success,errorString in
-                if let _ = errorString{
-                    self.displayMessageBox(errorString!)
-                }else{
-                    
-                        dispatch_async(dispatch_get_main_queue()){
-                            self.presentInputPinController()
-                    }
-                }
-            }
-            
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -21,6 +21,7 @@
 		FA461AC91CA340A200A9CC71 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA461AC81CA340A200A9CC71 /* Student.swift */; };
 		FA461ACC1CAB180500A9CC71 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA461ACB1CAB180500A9CC71 /* MapViewController.swift */; };
 		FA83DCB31CB06C2E00FA9357 /* InputPinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA83DCB21CB06C2E00FA9357 /* InputPinController.swift */; };
+		FA83DCB51CB166CF00FA9357 /* ShareLinkWithPinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA83DCB41CB166CF00FA9357 /* ShareLinkWithPinController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		FA461AC81CA340A200A9CC71 /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		FA461ACB1CAB180500A9CC71 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		FA83DCB21CB06C2E00FA9357 /* InputPinController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InputPinController.swift; path = ../InputPinController.swift; sourceTree = "<group>"; };
+		FA83DCB41CB166CF00FA9357 /* ShareLinkWithPinController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShareLinkWithPinController.swift; path = ../ShareLinkWithPinController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 				FA83DCB21CB06C2E00FA9357 /* InputPinController.swift */,
 				FA461A901CA302C900A9CC71 /* LoginViewController.swift */,
 				FA461ACB1CAB180500A9CC71 /* MapViewController.swift */,
+				FA83DCB41CB166CF00FA9357 /* ShareLinkWithPinController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				FA461A8F1CA302C900A9CC71 /* AppDelegate.swift in Sources */,
 				FA83DCB31CB06C2E00FA9357 /* InputPinController.swift in Sources */,
 				FA461AC21CA3260000A9CC71 /* UdacityConvenience.swift in Sources */,
+				FA83DCB51CB166CF00FA9357 /* ShareLinkWithPinController.swift in Sources */,
 				FA461AC61CA3285B00A9CC71 /* Reachability.m in Sources */,
 				FA461AC91CA340A200A9CC71 /* Student.swift in Sources */,
 				FA461ABE1CA325C600A9CC71 /* UdacityClient.swift in Sources */,
