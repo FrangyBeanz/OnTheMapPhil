@@ -11,6 +11,7 @@ import UIKit
 import MapKit
 
 class ShareLinkWithPinController: UIViewController {
+    static var errors: [NSError] = []
     @IBAction func CancelButton(sender: UIBarButtonItem) {
         cancel()
     }
@@ -79,13 +80,12 @@ class ShareLinkWithPinController: UIViewController {
         //The geocoding
         
         if let address = locationString{
-            var geocoder = CLGeocoder()
+            let geocoder = CLGeocoder()
             geoCodingStarted()
             geocoder.geocodeAddressString(address, completionHandler: { (placemarks: [CLPlacemark]?, error: NSError?) -> Void in
-                if let error = error {
-                    var alert = UIAlertController(title: "", message: "Geocoding failed", preferredStyle: UIAlertControllerStyle.Alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: self.cancel))
-                    self.presentViewController(alert, animated: true, completion: nil)
+                if self.placeMark == nil {
+                    
+              
                 } else {
                     if let placemark = placemarks?[0] {
                         self.mapView.addAnnotation(MKPlacemark(placemark: placemark))
@@ -130,16 +130,16 @@ class ShareLinkWithPinController: UIViewController {
     
     //Submit the Location and link.
     @IBAction func submitAction(sender: UIButton) {
-        var networkReachability = Reachability.reachabilityForInternetConnection()
-        var networkStatus = networkReachability.currentReachabilityStatus()
+        let networkReachability = Reachability.reachabilityForInternetConnection()
+        let networkStatus = networkReachability.currentReachabilityStatus()
         if (networkStatus.rawValue == NotReachable.rawValue) {// Before quering for an existing location check if there is an available internet connection
             displayMessageBox("No Network Connection")
         } else {
             if shareLink.text ==  "Enter a Link to Share Here" || !checkURL(shareLink.text!){
-                displayMessageBox("You should enter a Valid URL")
+                displayMessageBox("Please enter a valid URL")
             }else{
                 if placeMark == nil{
-                    displayMessageBox("We didn't find any location. Try Again")
+                    displayMessageBox("We can't find that location... please try again")
                 }else{
                     //Set the Account's next retrieved fields (First Name,Last Name was already retrieved from loging in)
                     UdacityClient.sharedInstance().account?.mapString = locationString
@@ -147,28 +147,11 @@ class ShareLinkWithPinController: UIViewController {
                     UdacityClient.sharedInstance().account?.latitude = placeMark!.coordinate.latitude
                     UdacityClient.sharedInstance().account?.longtitude = placeMark!.coordinate.longitude
                     
-                    var objectID = UdacityClient.sharedInstance().account?.objectId //Get the objectId to update the record
-                    if let oid = UdacityClient.sharedInstance().account?.objectId {
-                        UdacityClient.sharedInstance().updateAccountLocation(UdacityClient.sharedInstance().account!){ result,error in
-                            if error != nil{
-                                dispatch_async(dispatch_get_main_queue(),{
-                                    self.displayMessageBox("Could not update Location")
-                                })
-                            }else if let r = result {
-                                if r {
-                                    dispatch_async(dispatch_get_main_queue(),{
-                                        var alert = UIAlertController(title: "", message: "Location updated", preferredStyle: UIAlertControllerStyle.Alert)
-                                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: self.cancel))
-                                        self.presentViewController(alert, animated: true, completion: nil)
-                                    })
-                                }else{
-                                    dispatch_async(dispatch_get_main_queue(),{
-                                        self.displayMessageBox("Could not save Location")
-                                    })
-                                }
-                            }
-                        }
-                    }else{ //If the record was not present create a new record.
+          //          let objectID = UdacityClient.sharedInstance().account?.objectId //Get the objectId to update the record
+                
+                }
+                    
+                     //If the record was not present create a new record.
                         UdacityClient.sharedInstance().saveAccountLocation(UdacityClient.sharedInstance().account!){ result,error in
                             if error != nil{
                                 dispatch_async(dispatch_get_main_queue(),{
@@ -177,8 +160,8 @@ class ShareLinkWithPinController: UIViewController {
                             }else if let r = result {
                                 if r {
                                     dispatch_async(dispatch_get_main_queue(),{
-                                        var alert = UIAlertController(title: "", message: "Location Saved", preferredStyle: UIAlertControllerStyle.Alert)
-                                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: self.cancel))
+                                        let alert = UIAlertController(title: "", message: "Location Saved", preferredStyle: UIAlertControllerStyle.Alert)
+                                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
                                         self.presentViewController(alert, animated: true, completion: nil)
                                     })
                                 }else{
@@ -186,8 +169,6 @@ class ShareLinkWithPinController: UIViewController {
                                         self.displayMessageBox("Could not save Location")
                                     })
                                 }
-                            }
-                        }
                     }
                 }
             }
@@ -207,8 +188,9 @@ class ShareLinkWithPinController: UIViewController {
     //Displays a basic alert box with the OK button and a message.
     func displayMessageBox(message:String){
         let alert = UIAlertController(title: "", message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil) )
         self.presentViewController(alert, animated: true, completion: nil)
-    }
+    
+     }
     
 }

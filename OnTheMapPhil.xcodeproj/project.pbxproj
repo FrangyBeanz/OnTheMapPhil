@@ -22,6 +22,8 @@
 		FA461ACC1CAB180500A9CC71 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA461ACB1CAB180500A9CC71 /* MapViewController.swift */; };
 		FA83DCB31CB06C2E00FA9357 /* InputPinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA83DCB21CB06C2E00FA9357 /* InputPinController.swift */; };
 		FA83DCB51CB166CF00FA9357 /* ShareLinkWithPinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA83DCB41CB166CF00FA9357 /* ShareLinkWithPinController.swift */; };
+		FA83DCB71CB1BDB700FA9357 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA83DCB61CB1BDB700FA9357 /* TableViewController.swift */; };
+		FA83DCB91CB1BF7300FA9357 /* PhilsFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA83DCB81CB1BF7300FA9357 /* PhilsFunctions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,8 @@
 		FA461ACB1CAB180500A9CC71 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		FA83DCB21CB06C2E00FA9357 /* InputPinController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InputPinController.swift; path = ../InputPinController.swift; sourceTree = "<group>"; };
 		FA83DCB41CB166CF00FA9357 /* ShareLinkWithPinController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShareLinkWithPinController.swift; path = ../ShareLinkWithPinController.swift; sourceTree = "<group>"; };
+		FA83DCB61CB1BDB700FA9357 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		FA83DCB81CB1BF7300FA9357 /* PhilsFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhilsFunctions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,10 +173,12 @@
 		FA461ACA1CAB17EC00A9CC71 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FA83DCB81CB1BF7300FA9357 /* PhilsFunctions.swift */,
 				FA83DCB21CB06C2E00FA9357 /* InputPinController.swift */,
 				FA461A901CA302C900A9CC71 /* LoginViewController.swift */,
 				FA461ACB1CAB180500A9CC71 /* MapViewController.swift */,
 				FA83DCB41CB166CF00FA9357 /* ShareLinkWithPinController.swift */,
+				FA83DCB61CB1BDB700FA9357 /* TableViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -313,8 +319,10 @@
 				FA461AC01CA325DC00A9CC71 /* UdacityConstants.swift in Sources */,
 				FA461A8F1CA302C900A9CC71 /* AppDelegate.swift in Sources */,
 				FA83DCB31CB06C2E00FA9357 /* InputPinController.swift in Sources */,
+				FA83DCB91CB1BF7300FA9357 /* PhilsFunctions.swift in Sources */,
 				FA461AC21CA3260000A9CC71 /* UdacityConvenience.swift in Sources */,
 				FA83DCB51CB166CF00FA9357 /* ShareLinkWithPinController.swift in Sources */,
+				FA83DCB71CB1BDB700FA9357 /* TableViewController.swift in Sources */,
 				FA461AC61CA3285B00A9CC71 /* Reachability.m in Sources */,
 				FA461AC91CA340A200A9CC71 /* Student.swift in Sources */,
 				FA461ABE1CA325C600A9CC71 /* UdacityClient.swift in Sources */,

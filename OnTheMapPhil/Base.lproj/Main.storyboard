@@ -149,7 +149,7 @@ Please ensure you are connected and try again. </string>
         <!--List-->
         <scene sceneID="PvR-8Y-b1g">
             <objects>
-                <viewController title="List" id="Wgy-t7-0eS" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UITableView" title="List" id="Wgy-t7-0eS" customClass="TableViewController" customModule="OnTheMapPhil" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qaX-Gg-8ht"/>
                         <viewControllerLayoutGuide type="bottom" id="fju-Yv-o5f"/>
@@ -161,7 +161,49 @@ Please ensure you are connected and try again. </string>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="igE-7p-x9r">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableViewCell" id="U76-Gt-3qW">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U76-Gt-3qW" id="ZqB-YW-Upb">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="20" y="88" width="360" height="455"/>
+                                </variation>
                             </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="buq-bo-FTl">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="UmY-tn-722">
+                                        <barButtonItem key="leftBarButtonItem" title="Logout" id="wWO-rr-3wB">
+                                            <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="LogoutButton:" destination="Wgy-t7-0eS" id="oZ0-uz-Vcn"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <rightBarButtonItems>
+                                            <barButtonItem image="refresh_filled-32" id="If2-RL-AJA">
+                                                <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <action selector="RefreshButton:" destination="Wgy-t7-0eS" id="AfC-cp-zrG"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem image="location-32" id="FD7-WW-iB7">
+                                                <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <action selector="PinButton:" destination="Wgy-t7-0eS" id="rhX-oq-JBK"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
+                                    </navigationItem>
+                                </items>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="20" width="400" height="44"/>
+                                </variation>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -173,6 +215,7 @@ Please ensure you are connected and try again. </string>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="igE-7p-x9r"/>
+                                <exclude reference="buq-bo-FTl"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="UMQ-ed-yc5"/>
@@ -184,6 +227,7 @@ Please ensure you are connected and try again. </string>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="igE-7p-x9r"/>
+                                <include reference="buq-bo-FTl"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="UMQ-ed-yc5"/>
@@ -193,11 +237,16 @@ Please ensure you are connected and try again. </string>
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="List" image="list-32" selectedImage="list-50" id="Kxk-pQ-5Na"/>
+                    <tabBarItem key="tabBarItem" title="List" image="list-32" selectedImage="list-50" id="5r8-U3-aFV"/>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="igE-7p-x9r" id="oxm-VU-kvh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P84-Dh-V44" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="852" y="626"/>
+            <point key="canvasLocation" x="852" y="629"/>
         </scene>
         <!--Map-->
         <scene sceneID="8gM-0I-qNJ">
