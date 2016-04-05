@@ -39,8 +39,7 @@ class MapViewController: UIViewController,MKMapViewDelegate {
         UdacityClient.sharedInstance().students = nil;
         self.dismissViewControllerAnimated(true, completion: {});}
     
-    @IBAction func PinButton(sender: AnyObject) {
-        self.newLocation()
+    @IBAction func PinButton(sender: UIBarButtonItem) {
     }
     
     //@IBAction func logoutButton(segue: UIStoryboardSegue) {
@@ -127,7 +126,7 @@ class MapViewController: UIViewController,MKMapViewDelegate {
     }
     
 */
-    //Function for adding a new location to the map
+ /**   //Function for adding a new location to the map
     func newLocation(){
         let networkReachability = Reachability.reachabilityForInternetConnection()
         let networkStatus = networkReachability.currentReachabilityStatus()
@@ -147,7 +146,7 @@ class MapViewController: UIViewController,MKMapViewDelegate {
             
         }
     }
-    
+  */
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -166,13 +166,11 @@ Please ensure you are connected and try again. </string>
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U76-Gt-3qW" id="ZqB-YW-Upb">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="20" y="88" width="360" height="455"/>
-                                </variation>
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="buq-bo-FTl">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -363,6 +361,7 @@ Please ensure you are connected and try again. </string>
                         <viewControllerLayoutGuide type="bottom" id="xif-YO-5uH"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="O5L-7m-8vq">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8tP-Xi-PfE">
@@ -482,6 +481,7 @@ S
                         <viewControllerLayoutGuide type="bottom" id="zg3-Sz-riQ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Tql-87-oYF">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sor-1p-KeP">
@@ -495,9 +495,6 @@ S
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="20" width="400" height="44"/>
-                                </variation>
                             </navigationBar>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="aij-w6-cXB">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>

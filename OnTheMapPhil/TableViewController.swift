@@ -9,7 +9,8 @@ import Foundation
 import MapKit
 import UIKit
 
-class TableViewController: MapViewController {
+class TableViewController //MapViewController
+{
   /**
     var pinButton = UIBarButtonItem()// THe button that will update/save Student's location and other data
     var logoutButton = UIBarButtonItem()
@@ -113,7 +114,6 @@ class TableViewController: MapViewController {
             return ()
         }
     }
-    
 */
     
 }
