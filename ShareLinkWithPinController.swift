@@ -20,7 +20,7 @@ class ShareLinkWithPinController: UIViewController {
     @IBOutlet var shareLink: UITextField!
     var tapRecognizer: UITapGestureRecognizer? = nil
     var placeMark: MKPlacemark? = nil
-    var locationString: String? = nil
+    var locationString: String?
    
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     
@@ -80,12 +80,14 @@ class ShareLinkWithPinController: UIViewController {
         //The geocoding
         
         if let address = locationString{
+            print(locationString)
             let geocoder = CLGeocoder()
-            geoCodingStarted()
             geocoder.geocodeAddressString(address, completionHandler: { (placemarks: [CLPlacemark]?, error: NSError?) -> Void in
-                if self.placeMark == nil {
+                if let _ = error {
+                    let alert = UIAlertController(title: "", message: "Sorry, we can't find that location. Please try again.", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "Go Back", style: UIAlertActionStyle.Default, handler: self.cancelalert))
+                    self.presentViewController(alert, animated: true, completion: nil)
                     
-              
                 } else {
                     if let placemark = placemarks?[0] {
                         self.mapView.addAnnotation(MKPlacemark(placemark: placemark))
@@ -98,7 +100,7 @@ class ShareLinkWithPinController: UIViewController {
                         self.indicator.startAnimating()
                     }
                 }
-                        self.geoCodingStoped()
+                self.geoCodingStoped() // handles the blackness of the image view and the display of the activity indicator
             })
         }
     }
@@ -115,8 +117,9 @@ class ShareLinkWithPinController: UIViewController {
     }
     
     // Cancel action from an Alert view
-    func cancel(action:UIAlertAction! ){
+    func cancelalert(action:UIAlertAction! ){
         self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+        self.cancel()
     }
     
     //Check for a valid URL

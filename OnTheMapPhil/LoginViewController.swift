@@ -67,7 +67,7 @@ class LoginViewController: UIViewController,UINavigationControllerDelegate {
     @IBAction func LoginButton(sender: AnyObject) {
         self.LoginActivityIndicator.hidden = false
         
-        //Hide error messages if they were already thee 
+        //Hide error messages if they were already thee
         self.CredsErrorMEssage.hidden = true
         self.ConnectionErrorMessage.hidden = true
         
