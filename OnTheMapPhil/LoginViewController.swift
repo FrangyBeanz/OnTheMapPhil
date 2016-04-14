@@ -11,6 +11,7 @@ import UIKit
 class LoginViewController: UIViewController,UINavigationControllerDelegate {
 
 
+    @IBOutlet weak var CredsErrorMEssage: UILabel!
     @IBOutlet weak var EmailEntry: UITextField!
     @IBOutlet weak var PasswordEntry: UITextField!
     @IBOutlet weak var LoginButton: UIButton!
@@ -25,6 +26,7 @@ class LoginViewController: UIViewController,UINavigationControllerDelegate {
         // Do any additional setup after loading the view, typically from a nib.
             LoginActivityIndicator.hidden = true
             ConnectionErrorMessage.hidden = true
+            CredsErrorMEssage.hidden = true
             tapOutsideTextbox = UITapGestureRecognizer(target: self, action: "handleSingleTap:")
             tapOutsideTextbox?.numberOfTapsRequired = 1
             
@@ -63,12 +65,20 @@ class LoginViewController: UIViewController,UINavigationControllerDelegate {
     
     //When we click the login button
     @IBAction func LoginButton(sender: AnyObject) {
+        self.LoginActivityIndicator.hidden = false
+        
+        //Hide error messages if they were already thee 
+        self.CredsErrorMEssage.hidden = true
+        self.ConnectionErrorMessage.hidden = true
+        
+        self.indicator(true)
         self.view.endEditing(true)
         UdacityClient.sharedInstance().authenticateBasicLoginWithViewController(self) { (success, errorString) in
             if success {
                 self.completeLogin()
             } else {
-                self.ConnectionErrorMessage.hidden = false
+                self.CredsErrorMEssage.hidden = false
+                self.LoginActivityIndicator.hidden = true
             }
         }
     }
@@ -100,6 +110,7 @@ class LoginViewController: UIViewController,UINavigationControllerDelegate {
     //Displays an error message if the connection failed
     func displayMessage(message:String){
         ConnectionErrorMessage.hidden = true
+        LoginActivityIndicator.hidden = true
     }
 }
 

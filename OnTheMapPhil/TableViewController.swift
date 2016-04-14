@@ -9,8 +9,11 @@ import Foundation
 import MapKit
 import UIKit
 
-class TableViewController //MapViewController
+class TableViewController: UIViewController
 {
+    
+//    @IBOutlet var tableOfStudents: UITableView!
+    
   /**
     var pinButton = UIBarButtonItem()// THe button that will update/save Student's location and other data
     var logoutButton = UIBarButtonItem()
@@ -36,14 +39,18 @@ class TableViewController //MapViewController
             displayMessageBox("No Network Connection")
         }
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    */
+//    override func didReceiveMemoryWarning() {
+  //      super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
+  //  }
+    
+   // override func viewDidAppear(animated: Bool) {
+    //    self.tableView.reloadData()
+   // }
     
     // MARK: - Table view Related
-    
+    /*
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let s = UdacityClient.sharedInstance().students {
             count = s.count
@@ -51,6 +58,7 @@ class TableViewController //MapViewController
         
         return count
     }
+    /**
     
     //populates the table view. (First Names and Last Names)
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -114,6 +122,6 @@ class TableViewController //MapViewController
             return ()
         }
     }
-*/
+*/ */
     
 }
