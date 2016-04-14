@@ -80,7 +80,6 @@ class ShareLinkWithPinController: UIViewController {
         //The geocoding
         
         if let address = locationString{
-            print(locationString)
             let geocoder = CLGeocoder()
             geocoder.geocodeAddressString(address, completionHandler: { (placemarks: [CLPlacemark]?, error: NSError?) -> Void in
                 if let _ = error {
@@ -105,7 +104,6 @@ class ShareLinkWithPinController: UIViewController {
         }
     }
     
-    //MARK: BUtton Actions
     //Browse for a URL.
     func browse(){
         let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("ShareLinkWithPinController") as! ShareLinkWithPinController
@@ -119,8 +117,22 @@ class ShareLinkWithPinController: UIViewController {
     // Cancel action from an Alert view
     func cancelalert(action:UIAlertAction! ){
         self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+        //since this is an error message, the user is sent to the previous screen
         self.cancel()
     }
+    
+    // Cancel action from an Alert view
+    func Back2Map(action:UIAlertAction! ){
+        self.navigationController?.dismissViewControllerAnimated(false, completion: nil)
+        //since this is an error message, the user is sent to the previous screen
+        let MapController =
+        self.storyboard!.instantiateViewControllerWithIdentifier("MapController")
+        self.presentViewController(MapController, animated: true) {
+            self.navigationController?.popViewControllerAnimated(true)
+            return ()
+        }
+    }
+    
     
     //Check for a valid URL
     func checkURL(str:String) -> Bool{
@@ -163,8 +175,8 @@ class ShareLinkWithPinController: UIViewController {
                             }else if let r = result {
                                 if r {
                                     dispatch_async(dispatch_get_main_queue(),{
-                                        let alert = UIAlertController(title: "", message: "Location Saved", preferredStyle: UIAlertControllerStyle.Alert)
-                                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                                        let alert = UIAlertController(title: "", message: "Location Saved Successfully!", preferredStyle: UIAlertControllerStyle.Alert)
+                                        alert.addAction(UIAlertAction(title: "Show me on the map!", style: UIAlertActionStyle.Default, handler: self.Back2Map))
                                         self.presentViewController(alert, animated: true, completion: nil)
                                     })
                                 }else{

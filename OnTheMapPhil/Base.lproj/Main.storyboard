@@ -283,7 +283,7 @@ Please check and try again.</string>
         <!--Map-->
         <scene sceneID="8gM-0I-qNJ">
             <objects>
-                <viewController title="Map" id="vBp-Eg-Hs6" customClass="MapViewController" customModule="OnTheMapPhil" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapController" title="Map" id="vBp-Eg-Hs6" customClass="MapViewController" customModule="OnTheMapPhil" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ITR-Un-rkg"/>
                         <viewControllerLayoutGuide type="bottom" id="fll-lU-wJ0"/>
@@ -565,7 +565,7 @@ S
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="NJ4-MS-SHw">
                                 <rect key="frame" x="-10" y="-10" width="20" height="20"/>
                             </activityIndicatorView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Enter your link here!" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mGx-Rl-Uh9">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Enter your link here!" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mGx-Rl-Uh9">
                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -678,7 +678,7 @@ S
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9yj-mT-XRP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2412" y="-34"/>
+            <point key="canvasLocation" x="2361" y="-34"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="mdh-cd-Cek">

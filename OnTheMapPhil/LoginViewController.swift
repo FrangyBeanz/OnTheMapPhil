@@ -105,6 +105,7 @@ class LoginViewController: UIViewController,UINavigationControllerDelegate {
             }
         })
         indicator(false)
+        LoginActivityIndicator.hidden = true
     }
     
     //Displays an error message if the connection failed
