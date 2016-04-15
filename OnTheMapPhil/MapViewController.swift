@@ -6,6 +6,7 @@
 //  Copyright © 2016 Phillip Hughes. All rights reserved.
 //  Some code from this swift class has been leveraged from Udacity's "Pin Sample" App
 //  Refresh button assistance from this thread on Stack Overflow: http://stackoverflow.com/questions/33187177/map-button-refresh-location
+//  Pin Colour assistance from http://stackoverflow.com/questions/32815367/change-color-pin-ios-9-mapkit 
 //
 
 import Foundation
@@ -64,7 +65,7 @@ class MapViewController: UIViewController,MKMapViewDelegate {
                     if (result != nil) {
                         self.count += result!.count
                         self.addAnnotations(result!)
-                    }
+                   }
                     return
                 })
             }
@@ -118,55 +119,38 @@ class MapViewController: UIViewController,MKMapViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.mapView.delegate = self
+        getNextResults()
         
+    }
+    
+    //Function to include the information icon on the annotation view, and open it in the web browser. 
+    func mapView(mapView: MKMapView, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) -> MKAnnotationView? {
-        
-        let reuseId = "pin"
-        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
-        
-        if control == annotationView.rightCalloutAccessoryView{
+        if control == annotationView.rightCalloutAccessoryView {
             let request = NSURLRequest(URL: NSURL(string: annotationView.annotation!.subtitle!!)!)
             UIApplication.sharedApplication().openURL(request.URL!)
+            
         }
+    }
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        let reuseId = "pin"
         
-        
+        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
         if pinView == nil {
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             pinView!.canShowCallout = true
             pinView!.animatesDrop = true
-            pinView!.pinTintColor = UIColor.redColor()
+            pinView!.pinTintColor = UIColor.orangeColor()
             pinView!.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
         }
         else {
             pinView!.annotation = annotation
         }
-        
         return pinView
-        
-        
     }
     
-        //MARK: Map Related
-        func annotationLink(annotationLink: MKMapView, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-            
-            if control == annotationView.rightCalloutAccessoryView {
-
-          let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("BrowserViewController") as! BrowserViewController
-                detailController.url = NSURL(string: annotationView.annotation!.subtitle!!)
-                self.presentViewController(detailController, animated: true, completion: nil)
-                
-                let request = NSURLRequest(URL: NSURL(string: annotationView.annotation!.subtitle!!)!)
-                UIApplication.sharedApplication().openURL(request.URL!)
-                
-            }
-        }
     
-       getNextResults()
-        
-    }
-    
- 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -179,6 +163,7 @@ class MapViewController: UIViewController,MKMapViewDelegate {
                 self.mapView.removeAnnotations(annotations) //Also remove all the annotations.
                 annotations = []
                 self.addAnnotations(UdacityClient.sharedInstance().students!)
+
             }
         }
         

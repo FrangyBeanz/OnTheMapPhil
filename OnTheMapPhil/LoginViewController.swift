@@ -10,7 +10,11 @@ import UIKit
 
 class LoginViewController: UIViewController,UINavigationControllerDelegate {
 
-
+    @IBAction func SignUp(sender: UIButton) {
+        if let url = NSURL(string: "https://www.udacity.com/account/auth#!/signup"){
+            UIApplication.sharedApplication().openURL(url)
+        }
+    }
     @IBOutlet weak var CredsErrorMEssage: UILabel!
     @IBOutlet weak var EmailEntry: UITextField!
     @IBOutlet weak var PasswordEntry: UITextField!

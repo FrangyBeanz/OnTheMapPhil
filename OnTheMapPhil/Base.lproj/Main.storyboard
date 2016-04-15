@@ -108,6 +108,32 @@ Please check and try again.</string>
                                 <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <size key="shadowOffset" width="1" height="0.0"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map_marker-50" translatesAutoresizingMaskIntoConstraints="NO" id="HQZ-BF-wL4">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="91" id="fB9-ng-fLX"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="fB9-ng-fLX"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="fB9-ng-fLX"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3vH-d7-kRb">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <state key="normal" title="Don't have an account? Sign Up">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="SignUp:" destination="dFh-wP-hJI" eventType="touchUpInside" id="nPy-4L-7gj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -116,19 +142,25 @@ Please check and try again.</string>
                             <constraint firstItem="Mc9-lY-Jjd" firstAttribute="top" secondItem="JHy-Dg-gkL" secondAttribute="bottom" constant="15" id="Bk0-pC-hv6"/>
                             <constraint firstItem="EoT-v9-21M" firstAttribute="top" secondItem="bzi-Nm-SyG" secondAttribute="bottom" constant="23" id="Cse-gt-oAc"/>
                             <constraint firstItem="JHy-Dg-gkL" firstAttribute="top" secondItem="yEo-Fc-jY7" secondAttribute="bottom" constant="83" id="DqH-ia-HZL"/>
+                            <constraint firstItem="JHy-Dg-gkL" firstAttribute="top" secondItem="HQZ-BF-wL4" secondAttribute="bottom" constant="8" symbolic="YES" id="Ezf-g0-6rR"/>
                             <constraint firstItem="JHy-Dg-gkL" firstAttribute="leading" secondItem="bPb-bE-UIY" secondAttribute="leadingMargin" constant="-12" id="F4L-dL-pFr"/>
                             <constraint firstItem="Mc9-lY-Jjd" firstAttribute="trailing" secondItem="bzi-Nm-SyG" secondAttribute="trailing" id="HPZ-UA-iH2"/>
                             <constraint firstItem="YCT-H2-BQS" firstAttribute="leading" secondItem="cGH-bH-IKs" secondAttribute="leading" id="Me6-cc-c6u"/>
                             <constraint firstItem="Mc9-lY-Jjd" firstAttribute="leading" secondItem="JHy-Dg-gkL" secondAttribute="leading" id="N2i-Eq-Gg1"/>
                             <constraint firstItem="bzi-Nm-SyG" firstAttribute="leading" secondItem="Mc9-lY-Jjd" secondAttribute="leading" id="Sow-Xp-Z2f"/>
+                            <constraint firstItem="3vH-d7-kRb" firstAttribute="top" secondItem="EoT-v9-21M" secondAttribute="bottom" constant="6" id="Tug-hT-ty2"/>
                             <constraint firstItem="bzi-Nm-SyG" firstAttribute="top" secondItem="Mc9-lY-Jjd" secondAttribute="bottom" constant="15" id="WTa-Nk-qSb"/>
                             <constraint firstItem="YCT-H2-BQS" firstAttribute="trailing" secondItem="cGH-bH-IKs" secondAttribute="trailing" id="aXL-7X-yJh"/>
                             <constraint firstItem="EoT-v9-21M" firstAttribute="centerX" secondItem="bzi-Nm-SyG" secondAttribute="centerX" id="cXc-Bz-QOd"/>
+                            <constraint firstItem="3vH-d7-kRb" firstAttribute="leading" secondItem="bPb-bE-UIY" secondAttribute="leadingMargin" id="i97-3V-iNT"/>
                             <constraint firstItem="cGH-bH-IKs" firstAttribute="top" secondItem="YCT-H2-BQS" secondAttribute="bottom" constant="41" id="jlQ-iQ-Tq0"/>
                             <constraint firstItem="EoT-v9-21M" firstAttribute="centerY" secondItem="bPb-bE-UIY" secondAttribute="centerY" id="kjS-Bo-rSA"/>
+                            <constraint firstItem="HQZ-BF-wL4" firstAttribute="centerX" secondItem="JHy-Dg-gkL" secondAttribute="centerX" id="mu6-cX-MKA"/>
                             <constraint firstItem="YCT-H2-BQS" firstAttribute="top" secondItem="EoT-v9-21M" secondAttribute="bottom" constant="39" id="n0a-1Q-c4W"/>
                             <constraint firstItem="Mc9-lY-Jjd" firstAttribute="trailing" secondItem="JHy-Dg-gkL" secondAttribute="trailing" id="sPq-GM-l2A"/>
                             <constraint firstItem="bzi-Nm-SyG" firstAttribute="leading" secondItem="YCT-H2-BQS" secondAttribute="leading" id="tXr-NT-8uU"/>
+                            <constraint firstItem="3vH-d7-kRb" firstAttribute="centerX" secondItem="EoT-v9-21M" secondAttribute="centerX" id="ylp-Gt-3TT"/>
+                            <constraint firstItem="HQZ-BF-wL4" firstAttribute="top" secondItem="yEo-Fc-jY7" secondAttribute="bottom" constant="8" symbolic="YES" id="zgU-NV-7bz"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -138,13 +170,15 @@ Please check and try again.</string>
                                 <exclude reference="EoT-v9-21M"/>
                                 <exclude reference="YCT-H2-BQS"/>
                                 <exclude reference="cGH-bH-IKs"/>
+                                <exclude reference="HQZ-BF-wL4"/>
+                                <exclude reference="3vH-d7-kRb"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="Cse-gt-oAc"/>
-                                <exclude reference="cXc-Bz-QOd"/>
-                                <exclude reference="kjS-Bo-rSA"/>
                                 <exclude reference="DqH-ia-HZL"/>
+                                <exclude reference="Ezf-g0-6rR"/>
                                 <exclude reference="F4L-dL-pFr"/>
+                                <exclude reference="mu6-cX-MKA"/>
+                                <exclude reference="zgU-NV-7bz"/>
                                 <exclude reference="BKD-vA-89c"/>
                                 <exclude reference="Bk0-pC-hv6"/>
                                 <exclude reference="HPZ-UA-iH2"/>
@@ -154,6 +188,12 @@ Please check and try again.</string>
                                 <exclude reference="Sow-Xp-Z2f"/>
                                 <exclude reference="WTa-Nk-qSb"/>
                                 <exclude reference="tXr-NT-8uU"/>
+                                <exclude reference="Tug-hT-ty2"/>
+                                <exclude reference="i97-3V-iNT"/>
+                                <exclude reference="ylp-Gt-3TT"/>
+                                <exclude reference="Cse-gt-oAc"/>
+                                <exclude reference="cXc-Bz-QOd"/>
+                                <exclude reference="kjS-Bo-rSA"/>
                                 <exclude reference="Me6-cc-c6u"/>
                                 <exclude reference="aXL-7X-yJh"/>
                                 <exclude reference="n0a-1Q-c4W"/>
@@ -168,13 +208,15 @@ Please check and try again.</string>
                                 <include reference="EoT-v9-21M"/>
                                 <include reference="YCT-H2-BQS"/>
                                 <include reference="cGH-bH-IKs"/>
+                                <include reference="HQZ-BF-wL4"/>
+                                <include reference="3vH-d7-kRb"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="Cse-gt-oAc"/>
-                                <include reference="cXc-Bz-QOd"/>
-                                <include reference="kjS-Bo-rSA"/>
                                 <include reference="DqH-ia-HZL"/>
+                                <include reference="Ezf-g0-6rR"/>
                                 <include reference="F4L-dL-pFr"/>
+                                <include reference="mu6-cX-MKA"/>
+                                <include reference="zgU-NV-7bz"/>
                                 <include reference="BKD-vA-89c"/>
                                 <include reference="Bk0-pC-hv6"/>
                                 <include reference="HPZ-UA-iH2"/>
@@ -184,6 +226,12 @@ Please check and try again.</string>
                                 <include reference="Sow-Xp-Z2f"/>
                                 <include reference="WTa-Nk-qSb"/>
                                 <include reference="tXr-NT-8uU"/>
+                                <include reference="Tug-hT-ty2"/>
+                                <include reference="i97-3V-iNT"/>
+                                <include reference="ylp-Gt-3TT"/>
+                                <include reference="Cse-gt-oAc"/>
+                                <include reference="cXc-Bz-QOd"/>
+                                <include reference="kjS-Bo-rSA"/>
                                 <include reference="Me6-cc-c6u"/>
                                 <include reference="aXL-7X-yJh"/>
                                 <include reference="n0a-1Q-c4W"/>
@@ -279,45 +327,6 @@ Please check and try again.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P84-Dh-V44" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="852" y="629"/>
-        </scene>
-        <!--Browser View Controller-->
-        <scene sceneID="x44-1i-7zZ">
-            <objects>
-                <viewController storyboardIdentifier="BrowserViewController" id="jNa-bo-djC" customClass="BrowserViewController" customModule="OnTheMapPhil" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="fSg-HS-Uaw"/>
-                        <viewControllerLayoutGuide type="bottom" id="5TQ-Tv-GuV"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="MlT-ca-elq">
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qBj-ya-Bkk">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="20" width="400" height="580"/>
-                                </variation>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="qBj-ya-Bkk"/>
-                            </mask>
-                        </variation>
-                        <variation key="widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="qBj-ya-Bkk"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <connections>
-                        <outlet property="webView" destination="qBj-ya-Bkk" id="8xL-G9-Wzb"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Swk-Hm-nUT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1635" y="629"/>
         </scene>
         <!--Map-->
         <scene sceneID="8gM-0I-qNJ">
@@ -741,6 +750,7 @@ S
     <resources>
         <image name="list-32" width="32" height="32"/>
         <image name="location-32" width="32" height="32"/>
+        <image name="map_marker-50" width="50" height="50"/>
         <image name="map_marker_filled-30 copy" width="30" height="30"/>
         <image name="map_marker_filled-32" width="32" height="32"/>
         <image name="refresh_filled-32" width="32" height="32"/>
