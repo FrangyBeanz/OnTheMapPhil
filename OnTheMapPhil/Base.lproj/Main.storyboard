@@ -280,6 +280,45 @@ Please check and try again.</string>
             </objects>
             <point key="canvasLocation" x="852" y="629"/>
         </scene>
+        <!--Browser View Controller-->
+        <scene sceneID="x44-1i-7zZ">
+            <objects>
+                <viewController storyboardIdentifier="BrowserViewController" id="jNa-bo-djC" customClass="BrowserViewController" customModule="OnTheMapPhil" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fSg-HS-Uaw"/>
+                        <viewControllerLayoutGuide type="bottom" id="5TQ-Tv-GuV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MlT-ca-elq">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qBj-ya-Bkk">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="20" width="400" height="580"/>
+                                </variation>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="qBj-ya-Bkk"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="qBj-ya-Bkk"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="qBj-ya-Bkk" id="8xL-G9-Wzb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Swk-Hm-nUT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1635" y="629"/>
+        </scene>
         <!--Map-->
         <scene sceneID="8gM-0I-qNJ">
             <objects>

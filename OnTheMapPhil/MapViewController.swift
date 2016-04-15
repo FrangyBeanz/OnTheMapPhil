@@ -18,6 +18,12 @@ class MapViewController: UIViewController,MKMapViewDelegate {
     var DefaultLat = 51.9080387
     var DefaultLong = -2.0772528
     var update = false
+    @IBOutlet var mapView: MKMapView!
+    var annotations = [MKPointAnnotation]()
+    var count = 0
+    
+    @IBAction func PinButton(sender: UIBarButtonItem) {
+    }
     
     //Refresh button to reset the view to the default and refresh the pins
     @IBAction func RefreshButton(sender: AnyObject) {
@@ -47,16 +53,6 @@ class MapViewController: UIViewController,MKMapViewDelegate {
             }
     }
     
-    @IBAction func PinButton(sender: UIBarButtonItem) {
-    }
-    
-    //@IBAction func logoutButton(segue: UIStoryboardSegue) {
-    //}
-    
-    @IBOutlet var mapView: MKMapView!
-    var annotations = [MKPointAnnotation]()
-    var count = 0
-    
     //MARK: Get Next Results
     //Whenever it is called it retrieves the next batch of 100 records with the help of global variable count
     func getNextResults(){
@@ -74,6 +70,7 @@ class MapViewController: UIViewController,MKMapViewDelegate {
             }
         }
     }
+    
     //Displays a basic alert box with the OK button and a message.
     func displayMessageBox(message:String){
         let alert = UIAlertController(title: "", message: message, preferredStyle: UIAlertControllerStyle.Alert)
@@ -118,101 +115,27 @@ class MapViewController: UIViewController,MKMapViewDelegate {
         }
     }
     
-/**
-    //Function to Enter the current location
-    func presentInputPinController(){
-        let inputController = self.storyboard!.instantiateViewControllerWithIdentifier("InputPinController")
-            as! InputPinController
-       
-        inputController.update = self.update // Mark if it is for update or not
-        let navController = UINavigationController(rootViewController: inputController) // Creating a navigation controller with detailController at the root of the navigation stack.
-        self.navigationController!.presentViewController(navController, animated: true) {
-            self.navigationController?.popViewControllerAnimated(true)
-            return ()
-        }
 
-    }
-    
-*/
- /**   //Function for adding a new location to the map
-    func newLocation(){
-        let networkReachability = Reachability.reachabilityForInternetConnection()
-        let networkStatus = networkReachability.currentReachabilityStatus()
-        if (networkStatus.rawValue == NotReachable.rawValue) {// Before quering for an existing location check if there is an available internet connection
-            displayMessageBox("No Network Connection")
-        }else{
-            UdacityClient.sharedInstance().authenticateStudentLocationsWithViewController(self){ success,errorString in
-                if let _ = errorString{
-                    self.displayMessageBox(errorString!)
-                }else{
-                    
-                        dispatch_async(dispatch_get_main_queue()){
-                            self.presentInputPinController()
-                    }
-                }
-            }
-            
-        }
-    }
-  */
     override func viewDidLoad() {
         super.viewDidLoad()
         
-      
-        // The "locations" array is an array of dictionary objects that are similar to the JSON
-        // data that you can download from parse.
         
-        //commenting out hard coded solution
-  //     let locations = hardCodedLocationData()
-        
-        // We will create an MKPointAnnotation for each dictionary in "locations". The
-        // point annotations will be stored in this array, and then provided to the map view.
-        var annotations = [MKPointAnnotation]()
-        
-        // The "locations" array is loaded with the sample data below. We are using the dictionaries
-        // to create map annotations. This would be more stylish if the dictionaries were being
-        // used to create custom structs. Perhaps StudentLocation structs.
-        
-   //     for dictionary in locations {
-            
-            // Notice that the float values are being used to create CLLocationDegree values.
-            // This is a version of the Double type.
-  //          let lat = CLLocationDegrees(dictionary["latitude"] as! Double)
-  //          let long = CLLocationDegrees(dictionary["longitude"] as! Double)
-            
-            // The lat and long are used to create a CLLocationCoordinates2D instance.
-  //          let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-            
-  //          let first = dictionary["firstName"] as! String
-  //          let last = dictionary["lastName"] as! String
-  //         let mediaURL = dictionary["mediaURL"] as! String
-            
-            // Here we create the annotation and set its coordiate, title, and subtitle properties
-  //          let annotation = MKPointAnnotation()
-    //        annotation.coordinate = coordinate
-      //      annotation.title = "\(first) \(last)"
-        //    annotation.subtitle = mediaURL
-            
-            // Finally we place the annotation in an array of annotations.
-    //        annotations.append(annotation)
-      //  }
-        
-        // When the array is complete, we add the annotations to the map.
-    //    self.mapView.addAnnotations(annotations)
-        
-   // }
-        
-   
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) -> MKAnnotationView? {
         
         let reuseId = "pin"
-        
         var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
+        
+        if control == annotationView.rightCalloutAccessoryView{
+            let request = NSURLRequest(URL: NSURL(string: annotationView.annotation!.subtitle!!)!)
+            UIApplication.sharedApplication().openURL(request.URL!)
+        }
+        
         
         if pinView == nil {
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             pinView!.canShowCallout = true
-            pinView!.pinColor = .Red
+            pinView!.animatesDrop = true
+            pinView!.pinTintColor = UIColor.redColor()
             pinView!.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
         }
         else {
@@ -220,83 +143,26 @@ class MapViewController: UIViewController,MKMapViewDelegate {
         }
         
         return pinView
+        
+        
     }
     
+        //MARK: Map Related
+        func annotationLink(annotationLink: MKMapView, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+            
+            if control == annotationView.rightCalloutAccessoryView {
+
+          let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("BrowserViewController") as! BrowserViewController
+                detailController.url = NSURL(string: annotationView.annotation!.subtitle!!)
+                self.presentViewController(detailController, animated: true, completion: nil)
+                
+                let request = NSURLRequest(URL: NSURL(string: annotationView.annotation!.subtitle!!)!)
+                UIApplication.sharedApplication().openURL(request.URL!)
+                
+            }
+        }
     
-    // This delegate method is implemented to respond to taps. It opens the system browser
-    // to the URL specified in the annotationViews subtitle property.
-//    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-//        if control == view.rightCalloutAccessoryView {
-  //          let app = UIApplication.sharedApplication()
-    //        if let toOpen = view.annotation?.subtitle! {
-      //          app.openURL(NSURL(string: toOpen)!)
-        //    }
-   //     }
-    //}
-    //    func mapView(mapView: MKMapView, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-    //
-    //        if control == annotationView.rightCalloutAccessoryView {
-    //            let app = UIApplication.sharedApplication()
-    //            app.openURL(NSURL(string: annotationView.annotation.subtitle))
-    //        }
-    //    }
-    
-    // MARK: - Sample Data
-    
-    // Some sample data. This is a dictionary that is more or less similar to the
-    // JSON data that you will download from Parse.
-    
-//    func hardCodedLocationData() -> [[String : AnyObject]] {
-  //      return  [
-    //        [
-      //          "createdAt" : "2015-02-24T22:27:14.456Z",
-        //        "firstName" : "Jessica",
-          //      "lastName" : "Uelmen",
-            //    "latitude" : 28.1461248,
-              //  "longitude" : -82.75676799999999,
-                //"mapString" : "Tarpon Springs, FL",
-//                "mediaURL" : "www.linkedin.com/in/jessicauelmen/en",
-  //              "objectId" : "kj18GEaWD8",
-    //            "uniqueKey" : 872458750,
-      //          "updatedAt" : "2015-03-09T22:07:09.593Z"
-        //    ], [
-          //      "createdAt" : "2015-02-24T22:35:30.639Z",
-            //    "firstName" : "Gabrielle",
-              //  "lastName" : "Miller-Messner",
-        //        "latitude" : 35.1740471,
-          //      "longitude" : -79.3922539,
-            //    "mapString" : "Southern Pines, NC",
-              //  "mediaURL" : "http://www.linkedin.com/pub/gabrielle-miller-messner/11/557/60/en",
-                //"objectId" : "8ZEuHF5uX8",
-//                "uniqueKey" : 2256298598,
-  //              "updatedAt" : "2015-03-11T03:23:49.582Z"
-    //        ], [
-      //          "createdAt" : "2015-02-24T22:30:54.442Z",
-        //        "firstName" : "Jason",
-          //      "lastName" : "Schatz",
-            //    "latitude" : 37.7617,
-              //  "longitude" : -122.4216,
-//                "mapString" : "18th and Valencia, San Francisco, CA",
-  //              "mediaURL" : "http://en.wikipedia.org/wiki/Swift_%28programming_language%29",
-    //            "objectId" : "hiz0vOTmrL",
-      //          "uniqueKey" : 2362758535,
-        //        "updatedAt" : "2015-03-10T17:20:31.828Z"
-          //  ], [
-            //    "createdAt" : "2015-03-11T02:48:18.321Z",
-              //  "firstName" : "Jarrod",
-                //"lastName" : "Parkes",
-//                "latitude" : 34.73037,
-  //              "longitude" : -86.58611000000001,
-    //            "mapString" : "Huntsville, Alabama",
-      //          "mediaURL" : "https://linkedin.com/in/jarrodparkes",
-        //        "objectId" : "CDHfAy8sdp",
-          //      "uniqueKey" : 996618664,
-            //    "updatedAt" : "2015-03-13T03:37:58.389Z"
-//            ]
-  //      ]
-        
-        
-        getNextResults()
+       getNextResults()
         
     }
     
