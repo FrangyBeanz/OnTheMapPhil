@@ -36,8 +36,16 @@ class MapViewController: UIViewController,MKMapViewDelegate {
         let udacitySession = UdacityClient()
         udacitySession.sessionID = "nil"
         UdacityClient.sharedInstance().account = nil
-        UdacityClient.sharedInstance().students = nil;
-        self.dismissViewControllerAnimated(true, completion: {});}
+        UdacityClient.sharedInstance().students = nil
+        self.navigationController?.dismissViewControllerAnimated(false, completion: nil)
+        let LogoutAction =
+            self.storyboard!.instantiateViewControllerWithIdentifier("LoginViewController")
+            self.presentViewController(LogoutAction, animated: true)
+                {
+                self.navigationController?.popViewControllerAnimated(true)
+                return ()
+            }
+    }
     
     @IBAction func PinButton(sender: UIBarButtonItem) {
     }

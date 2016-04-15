@@ -99,7 +99,7 @@ class LoginViewController: UIViewController,UINavigationControllerDelegate {
         dispatch_async(dispatch_get_main_queue(), {
            let detailController =
                self.storyboard!.instantiateViewControllerWithIdentifier("AppTabBarController") as! UITabBarController
-            self.navigationController!.presentViewController(detailController, animated: true) {
+                self.presentViewController(detailController, animated: true) {
                 self.navigationController?.popViewControllerAnimated(true)
                 return ()
             }

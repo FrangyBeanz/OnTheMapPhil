@@ -28,7 +28,7 @@
         <!--Login to On The Map!-->
         <scene sceneID="vk0-i6-3kt">
             <objects>
-                <viewController id="dFh-wP-hJI" customClass="LoginViewController" customModule="OnTheMapPhil" customModuleProvider="target" colorLabel="IBBuiltInLabel-Orange" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="dFh-wP-hJI" customClass="LoginViewController" customModule="OnTheMapPhil" customModuleProvider="target" colorLabel="IBBuiltInLabel-Orange" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yEo-Fc-jY7"/>
                         <viewControllerLayoutGuide type="bottom" id="IqJ-Hq-Ykl"/>
