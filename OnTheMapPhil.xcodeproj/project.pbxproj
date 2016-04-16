@@ -25,6 +25,7 @@
 		FA83DCB71CB1BDB700FA9357 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA83DCB61CB1BDB700FA9357 /* TableViewController.swift */; };
 		FA83DCB91CB1BF7300FA9357 /* PhilsFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA83DCB81CB1BF7300FA9357 /* PhilsFunctions.swift */; };
 		FAD1DCC01CC0EFDC00A05546 /* BrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD1DCBF1CC0EFDC00A05546 /* BrowserViewController.swift */; };
+		FAD1DCC21CC2C3FA00A05546 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD1DCC11CC2C3FA00A05546 /* LoadingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		FA83DCB61CB1BDB700FA9357 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		FA83DCB81CB1BF7300FA9357 /* PhilsFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhilsFunctions.swift; sourceTree = "<group>"; };
 		FAD1DCBF1CC0EFDC00A05546 /* BrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserViewController.swift; sourceTree = "<group>"; };
+		FAD1DCC11CC2C3FA00A05546 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 				FA461A921CA302C900A9CC71 /* Main.storyboard */,
 				FA461A951CA302C900A9CC71 /* Assets.xcassets */,
 				FA461A971CA302C900A9CC71 /* LaunchScreen.storyboard */,
+				FAD1DCC11CC2C3FA00A05546 /* LoadingViewController.swift */,
 				FA461A9A1CA302C900A9CC71 /* Info.plist */,
 				FA461AC81CA340A200A9CC71 /* Student.swift */,
 			);
@@ -325,6 +328,7 @@
 				FA83DCB91CB1BF7300FA9357 /* PhilsFunctions.swift in Sources */,
 				FA461AC21CA3260000A9CC71 /* UdacityConvenience.swift in Sources */,
 				FA83DCB51CB166CF00FA9357 /* ShareLinkWithPinController.swift in Sources */,
+				FAD1DCC21CC2C3FA00A05546 /* LoadingViewController.swift in Sources */,
 				FA83DCB71CB1BDB700FA9357 /* TableViewController.swift in Sources */,
 				FAD1DCC01CC0EFDC00A05546 /* BrowserViewController.swift in Sources */,
 				FA461AC61CA3285B00A9CC71 /* Reachability.m in Sources */,

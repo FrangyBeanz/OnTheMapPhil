@@ -111,7 +111,12 @@ class ShareLinkWithPinController: UIViewController {
     }
     
     func cancel(){
-        self.dismissViewControllerAnimated(true, completion: nil)
+        let MapController =
+        self.storyboard!.instantiateViewControllerWithIdentifier("AppTabBarController")
+        self.presentViewController(MapController, animated: true) {
+            self.navigationController?.popViewControllerAnimated(true)
+            return ()
+        }
     }
     
     // Cancel action from an Alert view
@@ -123,10 +128,9 @@ class ShareLinkWithPinController: UIViewController {
     
     // Cancel action from an Alert view
     func Back2Map(action:UIAlertAction! ){
-        self.navigationController?.dismissViewControllerAnimated(false, completion: nil)
         //since this is an error message, the user is sent to the previous screen
         let MapController =
-        self.storyboard!.instantiateViewControllerWithIdentifier("MapController")
+        self.storyboard!.instantiateViewControllerWithIdentifier("AppTabBarController")
         self.presentViewController(MapController, animated: true) {
             self.navigationController?.popViewControllerAnimated(true)
             return ()
