@@ -20,8 +20,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cPr-Gh-WHP">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="hWv-b5-fWk">
-                                        <rect key="frame" x="50" y="299" width="491" height="2"/>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="hWv-b5-fWk">
+                                        <rect key="frame" x="50" y="299" width="491" height="3"/>
                                     </progressView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map_marker_filled-50" translatesAutoresizingMaskIntoConstraints="NO" id="lYz-rO-vZR">
                                         <rect key="frame" x="275" y="220" width="50" height="50"/>
@@ -45,6 +45,9 @@
                             <constraint firstItem="cPr-Gh-WHP" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="ybf-4j-h33"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="progressLabe" destination="hWv-b5-fWk" id="RcX-Po-JnJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

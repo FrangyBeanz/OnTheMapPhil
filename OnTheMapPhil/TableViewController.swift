@@ -10,7 +10,20 @@ import UIKit
 class TableViewController: UITableViewController {
     
     var pinButton = UIBarButtonItem()// THe button that will update/save Student's location and other data
-    var logoutButton = UIBarButtonItem()
+    @IBAction func LogoutButton(sender: UIBarButtonItem) {
+        let udacitySession = UdacityClient()
+        udacitySession.sessionID = "nil"
+        UdacityClient.sharedInstance().account = nil
+        UdacityClient.sharedInstance().students = nil
+        self.navigationController?.dismissViewControllerAnimated(false, completion: nil)
+        let LogoutAction =
+        self.storyboard!.instantiateViewControllerWithIdentifier("LoginViewController")
+        self.presentViewController(LogoutAction, animated: true)
+            {
+                self.navigationController?.popViewControllerAnimated(true)
+                return ()
+        }
+    }
     var reloadButton = UIBarButtonItem()
     var count = 0 //Keeps track of the number of Students
     var update = false // Indicates whether the update/save location button will update or create a new entry to in the student's API
