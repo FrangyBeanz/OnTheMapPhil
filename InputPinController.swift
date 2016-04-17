@@ -15,6 +15,10 @@ class InputPinController: UIViewController {
     @IBOutlet weak var locationString: UITextField?          // The String location for geocoding
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     @IBOutlet var findButton: UIButton!
+    @IBAction func cancelButton(sender: AnyObject) {
+        cancel()
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,5 +66,14 @@ class InputPinController: UIViewController {
             
        }
     }
-
+    
+    //Return to the Map screen on cancel click
+    func cancel(){
+        let MapController =
+        self.storyboard!.instantiateViewControllerWithIdentifier("AppTabBarController")
+        self.presentViewController(MapController, animated: true) {
+            self.navigationController?.popViewControllerAnimated(true)
+            return ()
+        }
+    }
 }

@@ -23,6 +23,8 @@ class ShareLinkWithPinController: UIViewController {
     var tapRecognizer: UITapGestureRecognizer? = nil
     var placeMark: MKPlacemark? = nil
     var locationString: String?
+    var navController: UINavigationController?
+    var window: UIWindow?
     
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     
@@ -66,7 +68,7 @@ class ShareLinkWithPinController: UIViewController {
             geocoder.geocodeAddressString(address, completionHandler: { (placemarks: [CLPlacemark]?, error: NSError?) -> Void in
                 if let _ = error {
                     let alert = UIAlertController(title: "", message: "Sorry, we can't find that location. Please try again.", preferredStyle: UIAlertControllerStyle.Alert)
-                    alert.addAction(UIAlertAction(title: "Go Back", style: UIAlertActionStyle.Default, handler: self.cancelalert))
+                    alert.addAction(UIAlertAction(title: "Go Back", style: UIAlertActionStyle.Default, handler: self.geocodeFailAlert))
                     self.presentViewController(alert, animated: true, completion: nil)
                     
                 } else {
@@ -93,6 +95,8 @@ class ShareLinkWithPinController: UIViewController {
         self.navigationController?.pushViewController(detailController, animated: true)
     }
     
+    
+    //Return to the Map screen on cancel click
     func cancel(){
         let MapController =
         self.storyboard!.instantiateViewControllerWithIdentifier("AppTabBarController")
@@ -103,12 +107,17 @@ class ShareLinkWithPinController: UIViewController {
     }
     
     // Cancel action from an Alert view
-    func cancelalert(action:UIAlertAction! ){
-        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
-        //since this is an error message, the user is sent to the previous screen
-        self.cancel()
+    func geocodeFailAlert(action:UIAlertAction! )
+            {
+                let MapController =
+                self.storyboard!.instantiateViewControllerWithIdentifier("InputPinControllerNav")
+                self.presentViewController(MapController, animated: true) {
+                    self.navigationController?.popViewControllerAnimated(true)
+                    return ()
+                }
     }
     
+   
     // Cancel action from an Alert view
     func Back2Map(action:UIAlertAction! ){
         //since this is an error message, the user is sent to the previous screen

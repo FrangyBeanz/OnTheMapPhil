@@ -317,7 +317,7 @@ Please check and try again.</string>
                                 <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="PinButton:" destination="vBp-Eg-Hs6" id="8ph-qW-Ob0"/>
-                                    <segue destination="Kh7-S5-cF5" kind="show" id="uFI-mB-7II"/>
+                                    <segue destination="qwv-3F-biT" kind="presentation" id="uFI-mB-7II"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -440,6 +440,13 @@ S
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" title="Share a link!" id="sbQ-qo-LKR">
+                        <barButtonItem key="rightBarButtonItem" title="Cancel" width="50" id="bse-b2-uGV">
+                            <connections>
+                                <action selector="cancelButton:" destination="Kh7-S5-cF5" id="qBP-6J-Xrp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="findButton" destination="bkX-Es-nLU" id="fA6-FX-23v"/>
                         <outlet property="indicator" destination="uHi-Rz-Q5U" id="w51-5x-z2P"/>
@@ -448,7 +455,7 @@ S
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qRE-bc-H1x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2685" y="296"/>
+            <point key="canvasLocation" x="3603" y="296"/>
         </scene>
         <!--Share a link!-->
         <scene sceneID="Utz-DD-gRE">
@@ -577,7 +584,7 @@ S
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9yj-mT-XRP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3486" y="296"/>
+            <point key="canvasLocation" x="4404" y="296"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="mdh-cd-Cek">
@@ -638,7 +645,7 @@ S
                                 <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="PinButton:" destination="vBp-Eg-Hs6" id="MIS-nI-2wd"/>
-                                    <segue destination="Kh7-S5-cF5" kind="show" id="MWn-wZ-s7g"/>
+                                    <segue destination="qwv-3F-biT" kind="presentation" id="MWn-wZ-s7g"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -688,6 +695,24 @@ S
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kgh-Y3-1Lx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="852" y="-34"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="B9d-Yr-xT1">
+            <objects>
+                <navigationController storyboardIdentifier="InputPinControllerNav" automaticallyAdjustsScrollViewInsets="NO" id="qwv-3F-biT" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Xdv-2w-3xd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Kh7-S5-cF5" kind="relationship" relationship="rootViewController" id="gJS-o7-6kw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RsT-dd-M1u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2685" y="296"/>
         </scene>
     </scenes>
     <resources>
