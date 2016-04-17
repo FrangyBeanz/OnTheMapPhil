@@ -18,8 +18,7 @@ class InputPinController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-   
+        self.title = "Location Entry"
         indicator.hidden = true
         tapRecognizer = UITapGestureRecognizer(target: self, action: "handleSingleTap:")
         tapRecognizer?.numberOfTapsRequired = 1
@@ -60,7 +59,7 @@ class InputPinController: UIViewController {
         if let _ = segue.identifier {
            let detailController = segue.destinationViewController as! ShareLinkWithPinController
            detailController.locationString = locationString!.text
-            print(locationString)
+            
        }
     }
 

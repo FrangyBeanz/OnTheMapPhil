@@ -22,11 +22,11 @@ class UdacityClient: NSObject {
         super.init()
     }
     
-    // MARK: - POST
+    //POST
     
     func taskForPOSTMethod(method: String,parse: Bool, parameters: [String : AnyObject]?, jsonBody: [String:AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
-        /* 1. Set the parameters */
+    //Set the parameters
         var urlString:String
         if let mutableParameters = parameters {
             urlString = method + UdacityClient.escapedParameters(mutableParameters)
@@ -34,17 +34,15 @@ class UdacityClient: NSObject {
             urlString = method
         }
         
-        /* 2/3. Build the URL and configure the request */
+    //2/3. Build the URL and configure the request
         
         let url = NSURL(string: urlString)!
         let request = NSMutableURLRequest(URL: url)
-        //        var jsonifyError: NSError? = nil
         request.HTTPMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         do {
             request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(jsonBody, options: [])
         } catch _ as NSError {
-            //            jsonifyError = error
             request.HTTPBody = nil
         }
         
@@ -55,10 +53,10 @@ class UdacityClient: NSObject {
             request.addValue("application/json", forHTTPHeaderField: "Accept")
         }
         
-        /* 4. Make the request */
+    //4. Make the request
         let task = session.dataTaskWithRequest(request) {data, response, downloadError in
             
-            /* 5/6. Parse the data and use the data (happens in completion handler) */
+            //5/6. Parse the data and use the data (happens in completion handler)
             if let error = downloadError {
                 _ = UdacityClient.errorForData(data, response: response, error: error)
                 completionHandler(result: nil, error: downloadError)
@@ -71,17 +69,16 @@ class UdacityClient: NSObject {
             }
         }
         
-        /* 7. Start the request */
+    //7. Start the request
         task.resume()
-        
         return task
     }
     
-    //MARK: PUT
+//PUT
     //The PUT method for updating values
     func taskForPUTMethod(method: String, parameters: [String : AnyObject]?, jsonBody: [String:AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
-        /* 1. Set the parameters */
+    //1. Set the parameters
         var urlString:String
         if let mutableParameters = parameters {
             urlString = method + UdacityClient.escapedParameters(mutableParameters)
@@ -89,11 +86,10 @@ class UdacityClient: NSObject {
             urlString = method
         }
         
-        /* 2/3. Build the URL and configure the request */
+    //2/3. Build the URL and configure the request
         
         let url = NSURL(string: urlString)!
         let request = NSMutableURLRequest(URL: url)
-        //        var jsonifyError: NSError? = nil
         request.HTTPMethod = "PUT"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue(UdacityClient.Constants.ParseApplicationID, forHTTPHeaderField: "X-Parse-Application-Id")
@@ -106,10 +102,10 @@ class UdacityClient: NSObject {
             request.HTTPBody = nil
         }
         
-        /* 4. Make the request */
+        //4. Make the request
         let task = session.dataTaskWithRequest(request) {data, response, downloadError in
             
-            /* 5/6. Parse the data and use the data (happens in completion handler) */
+            //5/6. Parse the data and use the data (happens in completion handler)
             if let error = downloadError {
                 _ = UdacityClient.errorForData(data, response: response, error: error)
                 completionHandler(result: nil, error: downloadError)
@@ -118,21 +114,20 @@ class UdacityClient: NSObject {
             }
         }
         
-        /* 7. Start the request */
+        //7. Start the request
         task.resume()
         
         return task
     }
     
     
-    // MARK: - GET
+//GET
     
     func taskForGETMethod(method: String, parse: Bool, parameters: [String : AnyObject]?, completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
-        /* 1. Set the parameters */
+        //1. Set the parameters
         
-        
-        /* 2/3. Build the URL and configure the request */
+        //2/3. Build the URL and configure the request
         var urlString:String
         if let mutableParameters = parameters {
             urlString = method + UdacityClient.escapedParameters(mutableParameters)
@@ -146,10 +141,10 @@ class UdacityClient: NSObject {
             request.addValue(UdacityClient.Constants.ParseApplicationID, forHTTPHeaderField: "X-Parse-Application-Id")
             request.addValue(UdacityClient.Constants.ApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
         }
-        /* 4. Make the request */
+        //4. Make the request
         let task = session.dataTaskWithRequest(request) {data, response, downloadError in
             
-            /* 5/6. Parse the data and use the data (happens in completion handler) */
+            //5/6. Parse the data and use the data (happens in completion handler)
             if let error = downloadError {
                 _ = UdacityClient.errorForData(data, response: response, error: error)
                 completionHandler(result: nil, error: downloadError)
@@ -162,13 +157,13 @@ class UdacityClient: NSObject {
             }
         }
         
-        /* 7. Start the request */
+        //7. Start the request
         task.resume()
         
         return task
     }
     
-    // MARK: - Helpers
+// Helpers
     
     /* Helper: Substitute the key for the value that is contained within the method name */
     class func subtituteKeyInMethod(method: String, key: String, value: String) -> String? {
@@ -234,20 +229,16 @@ class UdacityClient: NSObject {
             /* Append it */
             urlVars += [key + "=" + "\(replaceSpaceValue)"]
         }
-        
         return (!urlVars.isEmpty ? "?" : "") + urlVars.joinWithSeparator("&")
     }
     
-    // MARK: - Shared Instance
+// Shared Instance
     
     class func sharedInstance() -> UdacityClient {
-        
         struct Singleton {
             static var sharedInstance = UdacityClient()
         }
-        
         return Singleton.sharedInstance
     }
-    
 }
 

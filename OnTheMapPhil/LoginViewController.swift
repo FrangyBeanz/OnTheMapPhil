@@ -81,7 +81,7 @@ class LoginViewController: UIViewController,UINavigationControllerDelegate {
             self.ConnectionErrorMessage.hidden = false
             self.LoginActivityIndicator.hidden = true
             }else{
-            UdacityClient.sharedInstance().authenticateBasicLoginWithViewController(self) { (success, errorString) in
+            UdacityClient.sharedInstance().authenticateLogin(self) { (success, errorString) in
                 if success {
                     self.completeLogin()
                         } else {

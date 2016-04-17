@@ -5,7 +5,8 @@
 //  Created by Phillip Hughes on 03/04/2016.
 //  Copyright © 2016 Phillip Hughes. All rights reserved.
 //  Valid URL Check assistance from Stack Overflow: http://stackoverflow.com/questions/32229697/check-if-valid-url-webview-swift
-//
+//  Geolocation assistance from rshankar: http://rshankar.com/get-your-current-address-in-swift/
+
 
 import Foundation
 import UIKit
@@ -26,24 +27,9 @@ class ShareLinkWithPinController: UIViewController {
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
-        indicator.hidden = true
-        submitButton.layer.cornerRadius = 10
-        submitButton.clipsToBounds = true
-        submitButton.backgroundColor = UIColor.whiteColor()
-        submitButton.alpha = 0.8
-        shareLink.text = "Enter a Link to Share Here"
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.translucent = true
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: "cancel")
-        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.whiteColor()
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Browse", style: .Plain, target: self, action: "browse")
-        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
-        
         tapRecognizer = UITapGestureRecognizer(target: self, action: "handleSingleTap:")
         tapRecognizer?.numberOfTapsRequired = 1
-        
-        
+        indicator.hidden = true
         self.navigationItem.hidesBackButton = true
     }
     
@@ -73,7 +59,8 @@ class ShareLinkWithPinController: UIViewController {
         }
         
         //The geocoding
-        
+        self.indicator.hidden = false
+        self.indicator.startAnimating()
         if let address = locationString{
             let geocoder = CLGeocoder()
             geocoder.geocodeAddressString(address, completionHandler: { (placemarks: [CLPlacemark]?, error: NSError?) -> Void in
@@ -95,6 +82,7 @@ class ShareLinkWithPinController: UIViewController {
                     }
                 }
                 self.indicator.stopAnimating()
+                self.indicator.hidden = true
             })
         }
     }
@@ -192,4 +180,5 @@ class ShareLinkWithPinController: UIViewController {
         self.presentViewController(alert, animated: true, completion: nil)
     
      }
+    
 }
