@@ -7,7 +7,9 @@
 //  Some code from this swift class has been leveraged from Udacity's "Pin Sample" App
 //  Refresh button assistance from this thread on Stack Overflow: http://stackoverflow.com/questions/33187177/map-button-refresh-location
 //  Pin Colour assistance from http://stackoverflow.com/questions/32815367/change-color-pin-ios-9-mapkit 
-//
+//  Icons used are from Icon 8's Free iOS icons package: https://icons8.com/
+
+
 
 import Foundation
 import UIKit
@@ -38,7 +40,7 @@ class MapViewController: UIViewController,MKMapViewDelegate {
         self.reload()
     }
     
-    //when we click the logout buttin, invalidate the sessions and return to the login screen
+    //when we click the logout button, invalidate the sessions and return to the login screen
     @IBAction func LogoutButton(sender: UIBarButtonItem) {
         let udacitySession = UdacityClient()
         udacitySession.sessionID = "nil"
@@ -54,9 +56,8 @@ class MapViewController: UIViewController,MKMapViewDelegate {
             }
     }
     
-    //MARK: Get Next Results
-    //Whenever it is called it retrieves the next batch of 100 records with the help of global variable count
-    func getNextResults(){
+    //Retrieve the next set of records in batches of 100
+        func getNextResults(){
         UdacityClient.sharedInstance().getStudentLocations(limit: 100,skip: count){result, errorString in
             if let _ = errorString {
                 self.displayMessageBox("Could not download results")
@@ -71,6 +72,7 @@ class MapViewController: UIViewController,MKMapViewDelegate {
             }
         }
     }
+    
     
     //Displays a basic alert box with the OK button and a message.
     func displayMessageBox(message:String){
@@ -95,11 +97,7 @@ class MapViewController: UIViewController,MKMapViewDelegate {
         }
     }
     
-    //Get more results in a network considerate fashion
-    func moreLocations(){
-        getNextResults()
-    }
-    
+
     //Reload all data
     func reload(){
         let networkReachability = Reachability.reachabilityForInternetConnection()
@@ -135,7 +133,6 @@ class MapViewController: UIViewController,MKMapViewDelegate {
     }
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         let reuseId = "pin"
-        
         var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
         if pinView == nil {
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)

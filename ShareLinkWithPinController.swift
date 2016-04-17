@@ -4,6 +4,7 @@
 //
 //  Created by Phillip Hughes on 03/04/2016.
 //  Copyright © 2016 Phillip Hughes. All rights reserved.
+//  Valid URL Check assistance from Stack Overflow: http://stackoverflow.com/questions/32229697/check-if-valid-url-webview-swift
 //
 
 import Foundation
@@ -21,7 +22,7 @@ class ShareLinkWithPinController: UIViewController {
     var tapRecognizer: UITapGestureRecognizer? = nil
     var placeMark: MKPlacemark? = nil
     var locationString: String?
-   
+    
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
@@ -36,8 +37,6 @@ class ShareLinkWithPinController: UIViewController {
         self.navigationController?.navigationBar.translucent = true
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: "cancel")
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor.whiteColor()
-        
-        
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Browse", style: .Plain, target: self, action: "browse")
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
         
@@ -54,20 +53,16 @@ class ShareLinkWithPinController: UIViewController {
     
     
     // MARK: - Keyboard Fixes
-    
     func addKeyboardDismissRecognizer() {
         self.view.addGestureRecognizer(tapRecognizer!)
     }
-    
     func removeKeyboardDismissRecognizer() {
         self.view.removeGestureRecognizer(tapRecognizer!)
     }
-    
     //Action to dismiss the keyboard when a tap was performed outside the text view
     func handleSingleTap(recognizer: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
-    
     
     
     override func viewWillAppear(animated: Bool) {
@@ -99,7 +94,7 @@ class ShareLinkWithPinController: UIViewController {
                         self.indicator.startAnimating()
                     }
                 }
-                self.geoCodingStoped() // handles the blackness of the image view and the display of the activity indicator
+                self.indicator.stopAnimating()
             })
         }
     }
@@ -137,41 +132,37 @@ class ShareLinkWithPinController: UIViewController {
         }
     }
     
-    
-    //Check for a valid URL
-    func checkURL(str:String) -> Bool{
-        if (str.characters.count < 7){
-            return false
-        }else{
-            return str.substringWithRange(Range<String.Index>(start: str.startIndex.advancedBy(0), end: str.startIndex.advancedBy(7))) == "http://"
-        }
+    //Before submitting a link, check to see if it can be opened
+    func checkURL (str:String) -> Bool{
+        var canOpen = false
+        if let url = NSURL(string: str) {
+            //canOpenURL will return a bool value
+            canOpen = UIApplication.sharedApplication().canOpenURL(url)
     }
+        return canOpen
+    }
+    
     
     //Submit the Location and link.
     @IBAction func submitAction(sender: UIButton) {
         let networkReachability = Reachability.reachabilityForInternetConnection()
         let networkStatus = networkReachability.currentReachabilityStatus()
         if (networkStatus.rawValue == NotReachable.rawValue) {// Before quering for an existing location check if there is an available internet connection
-            displayMessageBox("No Network Connection")
+            displayMessageBox("No Internet Connection")
         } else {
-            if shareLink.text ==  "Enter a Link to Share Here" || !checkURL(shareLink.text!){
+            if shareLink.text ==  "Enter your link here!" || !checkURL(shareLink.text!){
                 displayMessageBox("Please enter a valid URL")
             }else{
                 if placeMark == nil{
-                    displayMessageBox("We can't find that location... please try again")
+                    displayMessageBox("Can't find that location... please try again")
                 }else{
                     //Set the Account's next retrieved fields (First Name,Last Name was already retrieved from loging in)
                     UdacityClient.sharedInstance().account?.mapString = locationString
                     UdacityClient.sharedInstance().account?.mediaURL = shareLink.text
                     UdacityClient.sharedInstance().account?.latitude = placeMark!.coordinate.latitude
                     UdacityClient.sharedInstance().account?.longtitude = placeMark!.coordinate.longitude
-                    
-          //          let objectID = UdacityClient.sharedInstance().account?.objectId //Get the objectId to update the record
-                
-                }
-                    
-                     //If the record was not present create a new record.
-                        UdacityClient.sharedInstance().saveAccountLocation(UdacityClient.sharedInstance().account!){ result,error in
+                    }
+                       UdacityClient.sharedInstance().saveAccountLocation(UdacityClient.sharedInstance().account!){ result,error in
                             if error != nil{
                                 dispatch_async(dispatch_get_main_queue(),{
                                     self.displayMessageBox("Could not save Location")
@@ -179,7 +170,7 @@ class ShareLinkWithPinController: UIViewController {
                             }else if let r = result {
                                 if r {
                                     dispatch_async(dispatch_get_main_queue(),{
-                                        let alert = UIAlertController(title: "", message: "Location Saved Successfully!", preferredStyle: UIAlertControllerStyle.Alert)
+                                        let alert = UIAlertController(title: "Yeah!", message: "Location Saved Successfully!", preferredStyle: UIAlertControllerStyle.Alert)
                                         alert.addAction(UIAlertAction(title: "Show me on the map!", style: UIAlertActionStyle.Default, handler: self.Back2Map))
                                         self.presentViewController(alert, animated: true, completion: nil)
                                     })
@@ -194,22 +185,11 @@ class ShareLinkWithPinController: UIViewController {
         }
     }
     
-    func geoCodingStarted(){
-        indicator.startAnimating()
-    }
-    
-    // Start showing Activity indicator and the black transparent image view
-    func geoCodingStoped(){
-        indicator.stopAnimating()
-    }
-    
-    
-    //Displays a basic alert box with the OK button and a message.
+    //Displays a basic alert box for errors
     func displayMessageBox(message:String){
-        let alert = UIAlertController(title: "", message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil) )
         self.presentViewController(alert, animated: true, completion: nil)
     
      }
-    
 }

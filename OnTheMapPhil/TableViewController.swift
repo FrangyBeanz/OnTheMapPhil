@@ -4,7 +4,9 @@
 //
 //  Created by Phillip Hughes on 03/04/2016.
 //  Copyright © 2016 Phillip Hughes. All rights reserved.
-//
+// Table View navigation bar assistance from Stack Overflow: http://stackoverflow.com/questions/29435620/xcode-storyboard-cant-drag-bar-button-to-toolbar-at-top
+//  Icons used are from Icon 8's Free iOS icons package: https://icons8.com/
+
 import UIKit
 
 class TableViewController: UITableViewController {

@@ -14,9 +14,6 @@ class InputPinController: UIViewController {
     var tapRecognizer: UITapGestureRecognizer? = nil
     @IBOutlet weak var locationString: UITextField?          // The String location for geocoding
     @IBOutlet weak var indicator: UIActivityIndicatorView!
-    @IBAction func CancelButton(sender: UIBarButtonItem) {
-        cancel()
-    }
     @IBOutlet var findButton: UIButton!
     
     override func viewDidLoad() {
@@ -57,7 +54,8 @@ class InputPinController: UIViewController {
     func handleSingleTap(recognizer: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
-    //MARK: -
+    
+    //Pass the location string to the next page so that we can incorportate the link
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let _ = segue.identifier {
            let detailController = segue.destinationViewController as! ShareLinkWithPinController
@@ -65,10 +63,5 @@ class InputPinController: UIViewController {
             print(locationString)
        }
     }
-    
-    //Cancel button function to return to previous screen
-    func cancel(){
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-}
 
+}
