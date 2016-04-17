@@ -10,11 +10,14 @@ import UIKit
 
 class LoginViewController: UIViewController,UINavigationControllerDelegate {
 
+    //Sign-up button directs to external browser with Udacity sign-up link
     @IBAction func SignUp(sender: UIButton) {
         if let url = NSURL(string: "https://www.udacity.com/account/auth#!/signup"){
             UIApplication.sharedApplication().openURL(url)
         }
     }
+    
+    //Variable Declarations
     @IBOutlet weak var CredsErrorMEssage: UILabel!
     @IBOutlet weak var EmailEntry: UITextField!
     @IBOutlet weak var PasswordEntry: UITextField!
@@ -33,8 +36,7 @@ class LoginViewController: UIViewController,UINavigationControllerDelegate {
             CredsErrorMEssage.hidden = true
             tapOutsideTextbox = UITapGestureRecognizer(target: self, action: "handleSingleTap:")
             tapOutsideTextbox?.numberOfTapsRequired = 1
-            
-           }
+        }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -43,8 +45,7 @@ class LoginViewController: UIViewController,UINavigationControllerDelegate {
     
 
     override func viewWillAppear(animated: Bool) {
-        
-        //Dismiss the keyboard when the user taps outside the keyboard.
+                //Dismiss the keyboard when the user taps outside the keyboard.
         self.addKeyboardDismissRecognizer()
     }
     
@@ -53,15 +54,12 @@ class LoginViewController: UIViewController,UINavigationControllerDelegate {
     }
     
     // functions for keyboard recognizers
-    
     func addKeyboardDismissRecognizer() {
         self.view.addGestureRecognizer(tapOutsideTextbox!)
     }
-    
     func removeKeyboardDismissRecognizer() {
         self.view.removeGestureRecognizer(tapOutsideTextbox!)
     }
-    
     func handleSingleTap(recognizer: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
@@ -69,20 +67,27 @@ class LoginViewController: UIViewController,UINavigationControllerDelegate {
     
     //When we click the login button
     @IBAction func LoginButton(sender: AnyObject) {
+        let networkReachability = Reachability.reachabilityForInternetConnection()
+        let networkStatus = networkReachability.currentReachabilityStatus()
         self.LoginActivityIndicator.hidden = false
         
-        //Hide error messages if they were already thee
+        //Hide error messages if they were not already
         self.CredsErrorMEssage.hidden = true
         self.ConnectionErrorMessage.hidden = true
         
         self.indicator(true)
         self.view.endEditing(true)
-        UdacityClient.sharedInstance().authenticateBasicLoginWithViewController(self) { (success, errorString) in
-            if success {
-                self.completeLogin()
-            } else {
-                self.CredsErrorMEssage.hidden = false
-                self.LoginActivityIndicator.hidden = true
+        if (networkStatus.rawValue == NotReachable.rawValue) {
+            self.ConnectionErrorMessage.hidden = false
+            self.LoginActivityIndicator.hidden = true
+            }else{
+            UdacityClient.sharedInstance().authenticateBasicLoginWithViewController(self) { (success, errorString) in
+                if success {
+                    self.completeLogin()
+                        } else {
+                            self.CredsErrorMEssage.hidden = false
+                            self.LoginActivityIndicator.hidden = true
+                        }
             }
         }
     }
@@ -112,10 +117,5 @@ class LoginViewController: UIViewController,UINavigationControllerDelegate {
         LoginActivityIndicator.hidden = true
     }
     
-    //Displays an error message if the connection failed
-    func displayMessage(message:String){
-        ConnectionErrorMessage.hidden = true
-        LoginActivityIndicator.hidden = true
-    }
 }
 
