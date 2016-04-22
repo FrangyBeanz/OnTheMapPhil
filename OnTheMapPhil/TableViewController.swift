@@ -80,11 +80,28 @@ class TableViewController: UITableViewController {
         return cell
     }
     
-    //handle row click to open browser window to the students link
+    //Before opening a link, check to see if it can be opened
+    func checkURL (str:String) -> Bool{
+        var canOpen = false
+        if let url = NSURL(string: str) {
+            //canOpenURL will return a bool value
+            canOpen = UIApplication.sharedApplication().canOpenURL(url)
+        }
+        return canOpen
+    }
     
-    override func tableView(tableView: UITableView, didUnhighlightRowAtIndexPath indexPath: NSIndexPath) {
+    //handle row click to open browser window to the students link
+    override func tableView(tableView: UITableView, didUnhighlightRowAtIndexPath indexPath: NSIndexPath){
+    
+    if checkURL(UdacityClient.sharedInstance().students![indexPath.row].mediaURL!) //checks the student link provided is good before attempting to open, else we throw an error instead of failing silently
+    
+    {
         let request = NSURLRequest(URL: NSURL(string: UdacityClient.sharedInstance().students![indexPath.row].mediaURL!)!)
         UIApplication.sharedApplication().openURL(request.URL!)
+    }else{
+        displayMessageBox("Bad URL")
+        }
+        
     }
         override func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
@@ -94,7 +111,7 @@ class TableViewController: UITableViewController {
     }
         override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return false}
-    
+        
     
     //can show less results in the table so only getting 20 at a time vs 100
     func getNextResults(){

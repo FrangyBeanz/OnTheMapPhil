@@ -121,13 +121,25 @@ class MapViewController: UIViewController,MKMapViewDelegate {
         
     }
     
+    //Before opening a link, check to see if it can be opened
+    func checkURL (str:String) -> Bool{
+        var canOpen = false
+        if let url = NSURL(string: str) {
+            //canOpenURL will return a bool value
+            canOpen = UIApplication.sharedApplication().canOpenURL(url)
+        }
+        return canOpen
+    }
     //Function to include the information icon on the annotation view, and open it in the web browser. 
     func mapView(mapView: MKMapView, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
-        if control == annotationView.rightCalloutAccessoryView {
+        if control == annotationView.rightCalloutAccessoryView || !checkURL(annotationView.annotation!.subtitle!!) //Check the URL from the student record is good before attempting to open it
+            {
             let request = NSURLRequest(URL: NSURL(string: annotationView.annotation!.subtitle!!)!)
             UIApplication.sharedApplication().openURL(request.URL!)
             
+        }else{
+            displayMessageBox("Bad URL")
         }
     }
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {

@@ -165,7 +165,7 @@ class UdacityClient: NSObject {
     
 // Helpers
     
-    /* Helper: Substitute the key for the value that is contained within the method name */
+    // Helper: Substitute the key for the value that is contained within the method name
     class func subtituteKeyInMethod(method: String, key: String, value: String) -> String? {
         if method.rangeOfString("{\(key)}") != nil {
             return method.stringByReplacingOccurrencesOfString("{\(key)}", withString: value)
@@ -174,7 +174,7 @@ class UdacityClient: NSObject {
         }
     }
     
-    /* Helper: Given a response with error, see if a status_message is returned, otherwise return the previous error */
+    //Helper: Given a response with error, see if a status_message is returned, otherwise return the previous error
     class func errorForData(data: NSData?, response: NSURLResponse?, error: NSError) -> NSError {
         
         if let parsedResult = (try? NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)) as? [String : AnyObject] {
@@ -190,7 +190,7 @@ class UdacityClient: NSObject {
         return error
     }
     
-    /* Helper: Given raw JSON, return a usable Foundation object */
+    //Helper: Given raw JSON, return a usable Foundation object
     class func parseJSONWithCompletionHandler(data: NSData, completionHandler: (result: AnyObject!, error: NSError?) -> Void) {
         
         var parsingError: NSError? = nil
@@ -210,23 +210,23 @@ class UdacityClient: NSObject {
         }
     }
     
-    /* Helper: Given a dictionary of parameters, convert to a string for a url */
+    //Helper: Given a dictionary of parameters, convert to a string for a url
     class func escapedParameters(parameters: [String : AnyObject]) -> String {
         
         var urlVars = [String]()
         
         for (key, value) in parameters {
             
-            /* Make sure that it is a string value */
+            // Make sure that it is a string value
             let stringValue = "\(value)"
             
-            /* Escape it */
+            // Escape it //
             _ = stringValue.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
             
-            /* FIX: Replace spaces with '+' */
+            // FIX: Replace spaces with '+'
             let replaceSpaceValue = stringValue.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.LiteralSearch, range: nil)
             
-            /* Append it */
+            // Append it
             urlVars += [key + "=" + "\(replaceSpaceValue)"]
         }
         return (!urlVars.isEmpty ? "?" : "") + urlVars.joinWithSeparator("&")
