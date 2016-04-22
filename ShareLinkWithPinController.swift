@@ -169,7 +169,7 @@ class ShareLinkWithPinController: UIViewController {
                                     dispatch_async(dispatch_get_main_queue(),{
                                         let alert = UIAlertController(title: "Yeah!", message: "Location Saved Successfully!", preferredStyle: UIAlertControllerStyle.Alert)
                                         alert.addAction(UIAlertAction(title: "Show me on the map!", style: UIAlertActionStyle.Default, handler: self.Back2Map))
-                                        self.presentViewController(alert, animated: true, completion: nil)
+                                       self.presentViewController(alert, animated: true, completion: nil)
                                     })
                                 }else{
                                     dispatch_async(dispatch_get_main_queue(),{

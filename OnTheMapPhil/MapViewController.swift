@@ -8,7 +8,7 @@
 //  Refresh button assistance from this thread on Stack Overflow: http://stackoverflow.com/questions/33187177/map-button-refresh-location
 //  Pin Colour assistance from http://stackoverflow.com/questions/32815367/change-color-pin-ios-9-mapkit 
 //  Icons used are from Icon 8's Free iOS icons package: https://icons8.com/
-
+//  Udacity API Reference https://docs.google.com/document/d/1MECZgeASBDYrbBg7RlRu9zBBLGd3_kfzsN-0FtURqn0/pub?embedded=true#h.e1bka73gla8u
 
 
 import Foundation
@@ -46,13 +46,15 @@ class MapViewController: UIViewController,MKMapViewDelegate {
         udacitySession.sessionID = "nil"
         UdacityClient.sharedInstance().account = nil
         UdacityClient.sharedInstance().students = nil
-        let LogoutAction =
-            self.storyboard!.instantiateViewControllerWithIdentifier("LoginViewController")
-            self.presentViewController(LogoutAction, animated: true)
-                {
-                self.navigationController?.popViewControllerAnimated(true)
-                return ()
-            }
+
+                let LogoutAction =
+                self.storyboard!.instantiateViewControllerWithIdentifier("LoginViewController")
+                self.presentViewController(LogoutAction, animated: true)
+                    {
+                        self.navigationController?.popViewControllerAnimated(true)
+                        return ()
+                }
+        
     }
     
     //Retrieve the next set of records in batches of 100
@@ -161,7 +163,11 @@ class MapViewController: UIViewController,MKMapViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        //BUGFIX Ensure that we clear all previous pins when the view re-appears!
+        count = 0
+        self.mapView.removeAnnotations(annotations) //Also remove all the annotations.
+        annotations = []
+        UdacityClient.sharedInstance().students = nil
         let networkReachability = Reachability.reachabilityForInternetConnection()
         let networkStatus = networkReachability.currentReachabilityStatus()
         if (networkStatus.rawValue == NotReachable.rawValue) {
@@ -174,7 +180,6 @@ class MapViewController: UIViewController,MKMapViewDelegate {
 
             }
         }
-        
 
     }
     

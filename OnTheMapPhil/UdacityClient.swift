@@ -163,6 +163,7 @@ class UdacityClient: NSObject {
         return task
     }
     
+    
 // Helpers
     
     // Helper: Substitute the key for the value that is contained within the method name
@@ -189,6 +190,7 @@ class UdacityClient: NSObject {
         
         return error
     }
+
     
     //Helper: Given raw JSON, return a usable Foundation object
     class func parseJSONWithCompletionHandler(data: NSData, completionHandler: (result: AnyObject!, error: NSError?) -> Void) {
