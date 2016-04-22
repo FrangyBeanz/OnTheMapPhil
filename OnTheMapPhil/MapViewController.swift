@@ -133,7 +133,7 @@ class MapViewController: UIViewController,MKMapViewDelegate {
     //Function to include the information icon on the annotation view, and open it in the web browser. 
     func mapView(mapView: MKMapView, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
-        if control == annotationView.rightCalloutAccessoryView || !checkURL(annotationView.annotation!.subtitle!!) //Check the URL from the student record is good before attempting to open it
+        if control == annotationView.rightCalloutAccessoryView && checkURL(annotationView.annotation!.subtitle!!) //Check the URL from the student record is good before attempting to open it
             {
             let request = NSURLRequest(URL: NSURL(string: annotationView.annotation!.subtitle!!)!)
             UIApplication.sharedApplication().openURL(request.URL!)
