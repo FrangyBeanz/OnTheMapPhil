@@ -165,7 +165,7 @@ class UdacityClient: NSObject {
     
 //DELETE
     
-    class func getMeOuttaHere(){
+    class func deleteSession(){
     
     let request = NSMutableURLRequest(URL: NSURL(string: "https://www.udacity.com/api/session")!)
     request.HTTPMethod = "DELETE"

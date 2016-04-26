@@ -21,7 +21,7 @@ class TableViewController: UITableViewController {
         udacitySession.sessionID = "nil"
         UdacityClient.sharedInstance().account = nil
         UdacityClient.sharedInstance().students = nil
-        UdacityClient.getMeOuttaHere()
+        UdacityClient.deleteSession()
 
         let LogoutAction =
         self.storyboard!.instantiateViewControllerWithIdentifier("LoginViewController")
