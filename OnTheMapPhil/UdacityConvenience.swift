@@ -158,3 +158,22 @@ extension UdacityClient {
         }
     }
 }
+
+
+
+// DELETE SESSION FOR FULL LOGOUT
+//Login authentication handler
+func getMeOuttaHere(vc: MapViewController, completionHandler: (success: Bool, errorString: String?) -> Void) {
+    
+    let networkReachability = Reachability.reachabilityForInternetConnection()
+    let networkStatus = networkReachability.currentReachabilityStatus()
+    
+    if(vc.count > 0){
+        if(networkStatus.rawValue != NotReachable.rawValue){// Before quering fοr an existing location check if there is an available internet connection
+        }else{
+            completionHandler(success: false, errorString: "No Internet Connection")
+        }
+    }
+}
+
+

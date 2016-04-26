@@ -46,6 +46,7 @@ class MapViewController: UIViewController,MKMapViewDelegate {
         udacitySession.sessionID = "nil"
         UdacityClient.sharedInstance().account = nil
         UdacityClient.sharedInstance().students = nil
+        UdacityClient.getMeOuttaHere()
 
                 let LogoutAction =
                 self.storyboard!.instantiateViewControllerWithIdentifier("LoginViewController")

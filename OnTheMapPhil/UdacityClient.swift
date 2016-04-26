@@ -4,7 +4,7 @@
 //
 //  Created by Phillip Hughes on 23/03/2016.
 //  Copyright © 2016 Phillip Hughes. All rights reserved.
-//
+//  Udacity API Reference https://docs.google.com/document/d/1MECZgeASBDYrbBg7RlRu9zBBLGd3_kfzsN-0FtURqn0/pub?embedded=true
 
 import UIKit
 
@@ -161,6 +161,36 @@ class UdacityClient: NSObject {
         task.resume()
         
         return task
+    }
+    
+//DELETE
+    
+    class func getMeOuttaHere(){
+    
+    let request = NSMutableURLRequest(URL: NSURL(string: "https://www.udacity.com/api/session")!)
+    request.HTTPMethod = "DELETE"
+    var xsrfCookie: NSHTTPCookie? = nil
+    let sharedCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+    for cookie in sharedCookieStorage.cookies! {
+    if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+    }
+    if let xsrfCookie = xsrfCookie {
+        request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+    }
+    let session = NSURLSession.sharedSession()
+    let task = session.dataTaskWithRequest(request) { data, response, error in
+        if error != nil { // Handle error…
+            return
+        }
+        let newData = data!.subdataWithRange(NSMakeRange(5, data!.length - 5)) /* subset response data! */
+        print(NSString(data: newData, encoding: NSUTF8StringEncoding))
+        if let parsedResult = (try? NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)) as? [String : AnyObject]{
+        print(parsedResult)
+        }
+     
+    }
+    
+    task.resume()
     }
     
     
