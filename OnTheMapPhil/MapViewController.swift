@@ -119,7 +119,6 @@ class MapViewController: UIViewController,MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.mapView.delegate = self
-        getNextResults()
         
     }
     
@@ -168,6 +167,7 @@ class MapViewController: UIViewController,MKMapViewDelegate {
         self.mapView.removeAnnotations(annotations) //Also remove all the annotations.
         annotations = []
         UdacityClient.sharedInstance().students = nil
+        getNextResults()
         let networkReachability = Reachability.reachabilityForInternetConnection()
         let networkStatus = networkReachability.currentReachabilityStatus()
         if (networkStatus.rawValue == NotReachable.rawValue) {
