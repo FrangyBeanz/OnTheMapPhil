@@ -25,6 +25,7 @@ class ShareLinkWithPinController: UIViewController {
     var locationString: String?
     var navController: UINavigationController?
     var window: UIWindow?
+    var keyboardHidden = true
     
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     
@@ -33,12 +34,58 @@ class ShareLinkWithPinController: UIViewController {
         tapRecognizer?.numberOfTapsRequired = 1
         indicator.hidden = true
         self.navigationItem.hidesBackButton = true
+        
     }
     
     override func viewWillDisappear(animated: Bool) {
         self.removeKeyboardDismissRecognizer()
+        unsubscribeFromKeyboardNotifications()
+
+    }
+
+    
+    //--------------KEYBOARD - subscibe to notifications-----------------------//
+    func subscribeToKeyboardNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:"    , name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:"    , name: UIKeyboardWillHideNotification, object: nil)
     }
     
+    func unsubscribeFromKeyboardNotifications() {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name:
+            UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name:
+            UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    func getKeyboardHeight(notification: NSNotification) -> CGFloat {
+        let userInfo = notification.userInfo
+        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+        return keyboardSize.CGRectValue().height
+    }
+    
+    //Move the view frame up when the keyboard is called
+    func keyboardWillShow(notification: NSNotification) {
+        if(keyboardHidden ){
+            view.frame.origin.y -= getKeyboardHeight(notification)
+            keyboardHidden = false
+        }
+    }
+    //Move the view frame down when the keyboard is dismissed
+    func keyboardWillHide(notification: NSNotification) {
+        if(!keyboardHidden){
+            view.frame.origin.y += getKeyboardHeight(notification)
+            keyboardHidden = true
+        }
+    }
+    
+    //After the enter is pressed at we dismiss the keyboard
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        if textField.isEqual(locationString){
+            unsubscribeFromKeyboardNotifications()
+        }
+        return true
+    }
     
     // MARK: - Keyboard Fixes
     func addKeyboardDismissRecognizer() {
@@ -55,6 +102,7 @@ class ShareLinkWithPinController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         self.addKeyboardDismissRecognizer()
+        subscribeToKeyboardNotifications()
         let applicationDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
         if let sl = applicationDelegate.shareLink{
             shareLink.text = sl

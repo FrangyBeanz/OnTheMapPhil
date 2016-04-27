@@ -28,7 +28,6 @@ class InputPinController: UIViewController {
         indicator.hidden = true
         tapRecognizer = UITapGestureRecognizer(target: self, action: "handleSingleTap:")
         tapRecognizer?.numberOfTapsRequired = 1
-        subscribeToKeyboardNotifications()
     }
     
     override func didReceiveMemoryWarning() {
@@ -43,6 +42,7 @@ class InputPinController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
       self.addKeyboardDismissRecognizer()
+        subscribeToKeyboardNotifications()
     }
     
     // KEYBOARD KIXES
