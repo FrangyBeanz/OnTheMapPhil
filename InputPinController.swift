@@ -11,6 +11,8 @@ import UIKit
 import MapKit
 class InputPinController: UIViewController {
     
+    //Keyboard variable to make sure the keyboard remains hidden when not in use
+    var keyboardHidden = true
     var tapRecognizer: UITapGestureRecognizer? = nil
     @IBOutlet weak var locationString: UITextField?          // The String location for geocoding
     @IBOutlet weak var indicator: UIActivityIndicatorView!
@@ -26,7 +28,7 @@ class InputPinController: UIViewController {
         indicator.hidden = true
         tapRecognizer = UITapGestureRecognizer(target: self, action: "handleSingleTap:")
         tapRecognizer?.numberOfTapsRequired = 1
-        
+        subscribeToKeyboardNotifications()
     }
     
     override func didReceiveMemoryWarning() {
@@ -35,20 +37,20 @@ class InputPinController: UIViewController {
     }
     
     override func viewWillDisappear(animated: Bool) {
-        self.removeKeyboardDismissRecognizer()
+        //self.removeKeyboardDismissRecognizer()
+        unsubscribeFromKeyboardNotifications()
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.addKeyboardDismissRecognizer()
+      self.addKeyboardDismissRecognizer()
     }
     
-    // MARK: - Keyboard Fixes
-    
+    // KEYBOARD KIXES
         
     func addKeyboardDismissRecognizer() {
         self.view.addGestureRecognizer(tapRecognizer!)
     }
-    
+
     func removeKeyboardDismissRecognizer() {
         self.view.removeGestureRecognizer(tapRecognizer!)
     }
@@ -57,6 +59,51 @@ class InputPinController: UIViewController {
     func handleSingleTap(recognizer: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
+    
+    //--------------KEYBOARD - subscibe to notifications-----------------------//
+    func subscribeToKeyboardNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:"    , name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:"    , name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    func unsubscribeFromKeyboardNotifications() {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name:
+            UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name:
+            UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    func getKeyboardHeight(notification: NSNotification) -> CGFloat {
+        let userInfo = notification.userInfo
+        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+        return keyboardSize.CGRectValue().height
+    }
+    
+    //Move the view frame up when the keyboard is called
+    func keyboardWillShow(notification: NSNotification) {
+        if(keyboardHidden ){
+            view.frame.origin.y -= getKeyboardHeight(notification)
+            keyboardHidden = false
+        }
+    }
+    //Move the view frame down when the keyboard is dismissed
+    func keyboardWillHide(notification: NSNotification) {
+        if(!keyboardHidden){
+            view.frame.origin.y += getKeyboardHeight(notification)
+            keyboardHidden = true
+        }
+    }
+    
+    //After the enter is pressed at we dismiss the keyboard
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        if textField.isEqual(locationString){
+            unsubscribeFromKeyboardNotifications()
+        }
+        return true
+    }
+    
+    
     
     //Pass the location string to the next page so that we can incorportate the link
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

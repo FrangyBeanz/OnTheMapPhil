@@ -18,8 +18,10 @@ import MapKit
 class MapViewController: UIViewController,MKMapViewDelegate {
     
     var location: CLLocation!
-    var DefaultLat = 51.9080387
-    var DefaultLong = -2.0772528
+    //Setting the default long/lat from constants per feedback
+    let latitude = UdacityClient.LongLat.DefaultLat
+    let longitude = UdacityClient.LongLat.DefaultLong
+    
     var update = false
     @IBOutlet var mapView: MKMapView!
     var annotations = [MKPointAnnotation]()
@@ -31,8 +33,8 @@ class MapViewController: UIViewController,MKMapViewDelegate {
     //Refresh button to reset the view to the default and refresh the pins
     @IBAction func RefreshButton(sender: AnyObject) {
         let location = CLLocationCoordinate2D(
-            latitude: DefaultLat,
-            longitude: DefaultLong
+            latitude: latitude,
+            longitude: longitude
             )
         let span = MKCoordinateSpanMake(80, 80)
         let region = MKCoordinateRegion(center: location, span: span)

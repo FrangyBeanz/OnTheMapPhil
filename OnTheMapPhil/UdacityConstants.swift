@@ -22,6 +22,12 @@ extension UdacityClient{
         static let StudentLocations = "https://api.parse.com/1/classes/StudentLocation"
     }
     
+    // Default Longitude and Latitude to refresh the map to
+    struct LongLat {
+        static let DefaultLat = 51.9080387
+        static let DefaultLong = -2.0772528
+    }
+    
     // JSON Response Keys
     struct JSONResponseKeys {
         
@@ -48,7 +54,6 @@ extension UdacityClient{
         
         
         static let AccessToken = "access_token"
-        static let FacebookMobile = "facebook_mobile"
     }
     
     struct JSONBody{
